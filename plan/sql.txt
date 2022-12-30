@@ -1,0 +1,28 @@
+CREATE TABLE buildings (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name TEXT NOT NULL,
+  address TEXT NOT NULL
+);
+CREATE TABLE floors (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  building_id INT NOT NULL,
+  number INT NOT NULL,
+  FOREIGN KEY (building_id) REFERENCES buildings(id)
+);
+
+CREATE TABLE rooms (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  floor_id INT NOT NULL,
+  number INT NOT NULL,
+  type TEXT NOT NULL,
+  FOREIGN KEY (floor_id) REFERENCES floors(id)
+);
+
+CREATE TABLE workers (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  room_id INT NOT NULL,
+  title TEXT NOT NULL,
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL,
+  FOREIGN KEY (room_id) REFERENCES rooms(id)
+);
