@@ -1,0 +1,10 @@
+2023/01/03 17:36:17 [notice] 9552#7856: signal process started
+2023/01/03 17:37:32 [notice] 5712#10496: signal process started
+2023/01/03 17:38:33 [notice] 7868#9496: signal process started
+2023/01/03 18:39:20 [notice] 2968#4252: signal process started
+2023/01/03 18:40:55 [notice] 9376#8888: signal process started
+2023/01/03 18:41:48 [notice] 11812#9684: signal process started
+2023/01/03 18:44:13 [notice] 11272#8016: signal process started
+2023/01/03 18:44:27 [notice] 3888#2948: signal process started
+2023/01/03 18:49:50 [emerg] 11512#4080: CreateFile() "C:/Users/MX/Github/AI-PHP-PROJEKT/laragon-6.0.0/etc/nginx/php_upstream.conf" failed (3: FormatMessage() error:(15100)) in C:\Users\MX\Github\AI-PHP-PROJEKT\laragon-6.0.0\bin\nginx\nginx-1.14.0/conf/nginx.conf:35
+2023/01/03 18:51:51 [notice] 5968#12316: signal process started

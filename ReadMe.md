@@ -1,0 +1,1 @@
+[Software Requirements Specification](https://zutedupl-my.sharepoint.com/:w:/g/personal/nm49353_zut_edu_pl/EQqhmAFyVGZJuJblG3m-GVYBs9jWtV6amy3DwovY_hsjGw?e=4ugMnj "Software Requirements Specification")
