@@ -11,16 +11,5 @@ bin/notepad++/session.xml
 bin/notepad++/stylers.xml
 bin/notepad++/plugins/Config/converter.ini
 
-data
-
-etc/apache2/sites-enabled
-etc/nginx/*
-!etc/nginx/alias
-!etc/nginx/php_upstream.conf
-
 tmp
 
-usr/tpl
-
-www/*
-!www/index.php
