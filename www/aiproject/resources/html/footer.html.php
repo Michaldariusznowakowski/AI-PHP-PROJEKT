@@ -1,7 +1,8 @@
 <?php
-/** @todo add zut logo */
+$imgSrc = '../img/WIZUT.svg';
 ?>
 <footer>
+    <img src="<?=$imgSrc?>" alt="ZUT logo">
     <p>&#169 Zachodniopomorski Uniwersytet Technologiczny</p>
     <button>Admin panel</button>
 </footer>
