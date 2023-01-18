@@ -1,0 +1,118 @@
+body { 
+	
+	background: url(../img/red2.jpg) center top / cover no-repeat fixed;		
+	margin: 0; 
+	padding: 0;
+}
+* {
+	box-sizing: border-box;
+}
+[class*="col-"] {
+	float: left;
+}
+
+a{
+
+	color: white;
+	text-decoration: none;
+}
+@media (min-width: 768px) {
+    nav ul {
+        display: flex;
+		align-items: center;
+		justify-content: center;
+    }
+}
+nav ul {
+	font-family: monospace, monospace;
+	letter-spacing: 10px;;
+	font-weight: bold;
+	text-shadow: 4px 4px black;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+nav li:not(:first-child) {
+	margin: 0 auto;
+}
+nav li:first-child {
+	margin-left: 0;
+	transform: rotate(-10deg) skew(-10deg);
+	padding:30px;
+}
+nav li{
+	font-size: 150%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding:30px;
+}
+
+main{
+	font-family: monospace, monospace;
+	background: rgba(255, 255, 255, 0.3);
+	color:white;
+	padding:20px;
+}
+main h1{
+	font-size: 300%;
+	margin-bottom:60px;
+}
+main p{
+	font-size: 120%;
+}
+
+
+
+footer{
+	background-color: black;
+	color: #343434;
+	text-align: center;
+	font-size: 12px;
+	padding:20px;
+	display: table;
+	margin: auto;
+}
+button{
+	float:left;
+	color: white;
+	border-radius: 4px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+	background:gray;
+	padding:10px;
+}
+
+
+/* For mobile phones: */
+[class*="col-"] {
+	width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+	.col-s-1 {width: 8.33%;}
+	.col-s-2 {width: 16.66%;}
+	.col-s-3 {width: 25%;}
+	.col-s-4 {width: 33.33%;}
+	.col-s-5 {width: 41.66%;}
+	.col-s-6 {width: 50%;}
+	.col-s-7 {width: 58.33%;}
+	.col-s-8 {width: 66.66%;}
+	.col-s-9 {width: 75%;}
+	.col-s-10 {width: 83.33%;}
+	.col-s-11 {width: 91.66%;}
+	.col-s-12 {width: 100%;}
+}
+@media only screen and (min-width: 768px) {
+	.col-1 {width: 8.33%;}
+	.col-2 {width: 16.66%;}
+	.col-3 {width: 25%;}
+	.col-4 {width: 33.33%;}
+	.col-5 {width: 41.66%;}
+	.col-6 {width: 50%;}
+	.col-7 {width: 58.33%;}
+	.col-8 {width: 66.66%;}
+	.col-9 {width: 75%;}
+	.col-10 {width: 83.33%;}
+	.col-11 {width: 91.66%;}
+	.col-12 {width: 100%;}
+}
