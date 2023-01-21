@@ -1,0 +1,17 @@
+/* W jaki sposób stworzyć własny wygląd body? */
+/* Każdy moduł ma zarezerwowaną nazwe klasy body: */
+.MainPage {
+ color: white;
+}
+.Map {
+ color: white;
+}
+.AdminPanel {
+ color: white;
+}
+.Search {
+ color: white;
+}
+.Plan h1,h2 {
+ color: blue;
+}

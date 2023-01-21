@@ -1,5 +1,4 @@
 body { 
-	
 	background: url(../img/background.png) center top / cover no-repeat fixed;		
 	margin: 0; 
 	padding: 0;
@@ -11,10 +10,6 @@ body {
 	float: left;
 }
 
-/* a{
-	color: white;
-	text-decoration: none;
-} */
 @media (min-width: 768px) {
     nav ul {
         display: flex;
@@ -47,7 +42,6 @@ nav li {
 	justify-content: center;
 	padding:30px;
 }
-
 main{
 	font-family: monospace, monospace;
 	background: rgba(255, 255, 255, 0.3);
@@ -61,9 +55,6 @@ main h1{
 main p{
 	font-size: 120%;
 }
-
-
-
 footer{
 	background-color: black;
 	color: #343434;
@@ -81,13 +72,10 @@ button{
 	background:gray;
 	padding:10px;
 }
-
-
 /* For mobile phones: */
 [class*="col-"] {
 	width: 100%;
 }
-
 @media only screen and (min-width: 600px) {
 	.col-s-1 {width: 8.33%;}
 	.col-s-2 {width: 16.66%;}
