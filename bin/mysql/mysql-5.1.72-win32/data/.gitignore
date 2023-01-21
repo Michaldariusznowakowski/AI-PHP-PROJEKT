@@ -1,0 +1,3 @@
+*.pid
+ib_logfile?
+mysqld.log

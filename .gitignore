@@ -13,3 +13,6 @@ bin/notepad++/plugins/Config/converter.ini
 
 tmp
 
+bin/mysql/mysql-5.1.72-win32/data/ib_logfile0
+bin/mysql/mysql-5.1.72-win32/data/mysqld.log
+bin/nginx/nginx-1.14.0/logs/nginx.pid

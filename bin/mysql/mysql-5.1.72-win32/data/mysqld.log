@@ -54,3 +54,7 @@ Version: '5.1.72-community'  socket: ''  port: 3306  MySQL Community Server (GPL
 230103 18:51:19  InnoDB: Initializing buffer pool, size = 8.0M
 230103 18:51:19  InnoDB: Completed initialization of buffer pool
 230103 18:51:19  InnoDB: Started; log sequence number 0 44233
+230121  9:30:13 [Note] Plugin 'FEDERATED' is disabled.
+230121  9:30:13  InnoDB: Initializing buffer pool, size = 8.0M
+230121  9:30:13  InnoDB: Completed initialization of buffer pool
+230121  9:30:13  InnoDB: Started; log sequence number 0 44233
