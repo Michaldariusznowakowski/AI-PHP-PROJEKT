@@ -8,7 +8,7 @@ class Plan implements functions_for_model
         # Input : array("a" => "one", "b" => "two", "c" => "three")
         # Extract(Input) : $a = "one" , $b = "two" , $c = "three"
         
-        $output = array("budynek" => $post['numerBudynku']);
+        $output = array("HTML_BULDING_NUMBER" => $post['numerBudynku']);
         return $output;
     }
 }
