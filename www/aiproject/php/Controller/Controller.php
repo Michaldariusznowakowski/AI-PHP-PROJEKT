@@ -18,9 +18,10 @@ class Controller{
                 $this->model->getPage($page, $posts);
                 return;
             }
+        }
+
         $this->model->StartPage();
         return;
-        }
     }
     // funkcja sprawdzająca czy wszystkie
     // wymagane zmienne są ustawione
