@@ -12,20 +12,14 @@ class Controller{
     public function process(){
         if(isset($_POST["page"])){
             $page = $_POST["page"];
-            if($page == "Strona Główna"){
-                $this->model->StartPage();
-                return;
-            }
             // sprawdzamy czy wszystkie wymagane zmienne są ustawione
             if($this->checkIfPostSet($page)){
                 $posts = $this->getPosts($page);
                 $this->model->getPage($page, $posts);
-            }else{
-                // jeśli nie to wyświetlamy stronę startową
-                $this->model->StartPage();
+                return;
             }
-        }else{
-            $this->model->StartPage();
+        $this->model->StartPage();
+        return;
         }
     }
     // funkcja sprawdzająca czy wszystkie

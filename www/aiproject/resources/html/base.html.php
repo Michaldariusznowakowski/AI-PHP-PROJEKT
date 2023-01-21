@@ -10,7 +10,7 @@
 </head>
 <body <?= isset($HTML_PAGE_NAME) ? "class='$HTML_PAGE_NAME'" : '' ?>>
 <?php require(__DIR__ . DIRECTORY_SEPARATOR . 'navbar.html.php') ?>
-<main><?= $main ?? null ?></main>
+<main><?= $HTML_MAIN ?? null ?></main>
 <?php require(__DIR__ . DIRECTORY_SEPARATOR . 'footer.html.php') ?>
 </body>
 </html>

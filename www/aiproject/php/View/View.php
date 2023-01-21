@@ -8,12 +8,12 @@ class View{
             $viewParams = [];
         }
         $HTML_PAGE_NAME = $pageName;
-        $main = View::processPage($pageName, $viewParams);
+        $HTML_MAIN = View::processPage($pageName, $viewParams);
         extract($viewParams);
         ob_start();
         require 'resources/html/base.html.php';
-        $html = ob_get_clean();
-        echo $html;
+        $HTML = ob_get_clean();
+        echo $HTML;
     }
     # Function to process page
     public static function processPage($pageName, $viewParams){
@@ -25,26 +25,17 @@ class View{
             unset($viewParams['main']);
         }
 
-        extract($viewParams);
         
-        switch ($pageName) {
-            case 'Mapa':
-                require 'resources/html/map.html.php';
+        
+        # if interfaces_name == pageName foreach
+        foreach (interfaces::$interfaceNames as $name => $interface) {
+            if ($name == $pageName) {
+                extract($viewParams);
+                require 'resources/html/' . $interface . '.html.php';
                 break;
-            case 'Szukaj':
-                require 'resources/html/search.html.php';
-                break;
-            case 'Plan':
-                require 'resources/html/plan.html.php';
-                break;
-            case 'Admin Panel':
-                require 'resources/html/adminpanel.html.php';
-                break;
-            default:
-                require 'resources/html/mainpage.html.php';
-                break;
+            }
         }
-        $main = ob_get_clean();
-        return $main;
+        $HTML_MAIN = ob_get_clean();
+        return $HTML_MAIN;
     }
 }
