@@ -2,6 +2,7 @@
 require 'resources/config/interfaces.php';
 require 'php/Model/Model.php';
 class Controller{
+    private $model;
     //constructor tworzacy obiekt modelu
     public function __construct(){
         $this->model = new Model();
@@ -9,8 +10,8 @@ class Controller{
     // metoda sprawdzająca wstępnie poprawność danych
     // jeśli dane są poprawne to przekazuje je do modelu
     public function process(){
-        if(isset($_POST[page])){
-            $page = $_POST[page];
+        if(isset($_POST["page"])){
+            $page = $_POST["page"];
             // sprawdzamy czy wszystkie wymagane zmienne są ustawione
             if($this->checkIfPostSet($page)){
                 $posts = $this->getPosts($page);
