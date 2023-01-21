@@ -1,5 +1,8 @@
 <?php
 class View{
+    # Disable constructor
+    private function __construct() {}
+    # Function to render page
     public static function render($pageName, $viewParams = null){
         if ($viewParams == null) {
             $viewParams = [];
@@ -12,6 +15,7 @@ class View{
         $html = ob_get_clean();
         echo $html;
     }
+    # Function to process page
     public static function processPage($pageName, $viewParams){
         switch ($pageName) {
             case 'Map':
