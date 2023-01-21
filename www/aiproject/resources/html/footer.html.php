@@ -1,5 +1,5 @@
 <?php
-$imgSrc = '../img/WIZUT.svg';
+$imgSrc = '../resources/img/WIZUT.svg';
 ?>
 
     <footer class="col-12 ">
