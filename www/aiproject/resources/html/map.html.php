@@ -9,5 +9,11 @@ $imageSrc = "";
 <!--
     TODO: Add image containing 2 buildings
  -->
-<button type="button" value="WI1">Budynek 1</button>
-<button type="button" value="WI2">Budynek 2</button>
+<form action="index.php" method="post">
+    <input type="hidden" name="page" value="Plan">
+    <input type="hidden" name="numerBudynku" value="WI1">
+<input type="submit" value="Budynek 1">
+<form action="index.php" method="post">
+    <input type="hidden" name="page" value="Plan">
+    <input type="hidden" name="numerBudynku" value="WI2">
+<input type="submit" value="Budynek 2">
