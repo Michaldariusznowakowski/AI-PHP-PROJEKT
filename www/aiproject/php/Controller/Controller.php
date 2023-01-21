@@ -1,6 +1,5 @@
 <?php
 require 'resources/config/interfaces.php';
-require 'resources/config/paths.php';
 require 'php/Model/Model.php';
 class Controller{
     //constructor tworzacy obiekt modelu

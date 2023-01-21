@@ -58,3 +58,39 @@ Version: '5.1.72-community'  socket: ''  port: 3306  MySQL Community Server (GPL
 230121  9:30:13  InnoDB: Initializing buffer pool, size = 8.0M
 230121  9:30:13  InnoDB: Completed initialization of buffer pool
 230121  9:30:13  InnoDB: Started; log sequence number 0 44233
+230121 16:14:54 [Note] Plugin 'FEDERATED' is disabled.
+230121 16:14:54  InnoDB: Initializing buffer pool, size = 8.0M
+230121 16:14:54  InnoDB: Completed initialization of buffer pool
+230121 16:14:54  InnoDB: Operating system error number 87 in a file operation.
+InnoDB: Some operating system error numbers are described at
+InnoDB: http://dev.mysql.com/doc/refman/5.1/en/operating-system-error-codes.html
+InnoDB: File name .\ib_logfile0
+InnoDB: File operation call: 'aio read'.
+InnoDB: Cannot continue operation.
+230121 16:15:04 [Note] Plugin 'FEDERATED' is disabled.
+230121 16:15:04  InnoDB: Initializing buffer pool, size = 8.0M
+230121 16:15:04  InnoDB: Completed initialization of buffer pool
+230121 16:15:04  InnoDB: Operating system error number 87 in a file operation.
+InnoDB: Some operating system error numbers are described at
+InnoDB: http://dev.mysql.com/doc/refman/5.1/en/operating-system-error-codes.html
+InnoDB: File name .\ib_logfile0
+InnoDB: File operation call: 'aio read'.
+InnoDB: Cannot continue operation.
+230121 16:15:23 [Note] Plugin 'FEDERATED' is disabled.
+230121 16:15:23  InnoDB: Initializing buffer pool, size = 8.0M
+230121 16:15:23  InnoDB: Completed initialization of buffer pool
+230121 16:15:23  InnoDB: Operating system error number 87 in a file operation.
+InnoDB: Some operating system error numbers are described at
+InnoDB: http://dev.mysql.com/doc/refman/5.1/en/operating-system-error-codes.html
+InnoDB: File name .\ib_logfile0
+InnoDB: File operation call: 'aio read'.
+InnoDB: Cannot continue operation.
+230121 16:15:33 [Note] Plugin 'FEDERATED' is disabled.
+230121 16:15:33  InnoDB: Initializing buffer pool, size = 8.0M
+230121 16:15:33  InnoDB: Completed initialization of buffer pool
+230121 16:15:33  InnoDB: Operating system error number 87 in a file operation.
+InnoDB: Some operating system error numbers are described at
+InnoDB: http://dev.mysql.com/doc/refman/5.1/en/operating-system-error-codes.html
+InnoDB: File name .\ib_logfile0
+InnoDB: File operation call: 'aio read'.
+InnoDB: Cannot continue operation.

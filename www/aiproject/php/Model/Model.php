@@ -1,8 +1,8 @@
 <?php
-require 'php/Model/AdminPanel.php';
-require 'php/Model/Map.php';
-require 'php/Model/Plan.php';
-require 'php/Model/Search.php';
+#require 'php/Model/AdminPanel.php';
+#require 'php/Model/Map.php';
+#require 'php/Model/Plan.php';
+#require 'php/Model/Search.php';
 require 'php/view/View.php';
 
 
@@ -12,13 +12,14 @@ class Model{
     private $Plan=null;
 
     public function __construct(){
-        $this->Map = new Map();
-        $this->Search = new Search();
-        $this->Plan = new Plan();
+        #$this->Map = new Map();
+        #$this->Search = new Search();
+        #$this->Plan = new Plan();
+        #$this->AdminPanel = new AdminPanel();
     }
 
     public function StartPage(){
-        View::render('StartPage');
+        View::render('Mainpage');
     }
 
     function ViewRender($page,$viewParams){
