@@ -37,3 +37,4 @@ etc/nginx/alias/redis.conf
 etc/nginx/sites-enabled/00-default.conf
 etc/nginx/sites-enabled/auto.aiproject.local.conf
 usr/laragon.ini
+bin/mysql/mysql-5.1.72-win32/data/mysql/host.MYD
