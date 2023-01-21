@@ -5,48 +5,42 @@
 // zwrotnej od użytkownika
 // dzięki nim możemy przejść do kolejnych działań
 class interfaces{
-    public function __construct(){
+    # Disable constructor
+    private function __construct() {}
     // $nazwa = array('postZmienna'=1/0) 
     // 1 - wymagana,
     // 0 - nie wymagana
     // Mapa gdy otrzyma numer budynku to wyswietla pozycje na mapie
-    $Map=array('numerBudynku'=>0) ;
+    private static $Map=array('numerBudynku'=>0) ;
     // Plan wyswietla plan budynku wymaga numer budynku i pietra
-    $Plan=array('numerBudynku'=>1,'numerPietro'=>1,'numerPokoju'=>0);
-    // typ 1 - szukaj pomieszczenia, 2 - szukaj osoby
-    $Search=array('typ'=>0);
-    // Szukaj pomieszczenia wymaga numer budynku i numer pokoju
-    $SearchPomieszczenie=array('numerBudynku'=>1,'numerPokoju'=>1);
-    // Szukaj osoby wymaga imienia, nazwiska, godziny i dnia
-    $SearchPracownik=array('imie'=>1,'nazwisko'=>1,'godzina'=>1, 'dzien'=>1);
+    private static $Plan=array('numerBudynku'=>1,'numerPietro'=>0,'numerPokoju'=>0);
+    // Szukaj wyswietla wyniki wyszukiwania
+    private static $Search=array('typ'=>0, 'numerBudynku'=>0,'numerPokoju'=>0, 'imie'=>0,'nazwisko'=>0,'godzina'=>0, 'dzien'=>0);
     // AdminPanel wymaga loginu i hasla
-    $AdminPanel=array('login'=>1,'haslo'=>1);
-    // AdminSession wymaga sekretu
-    $AdminSession=array('secret'=>1);
-    }
+    private static$AdminPanel=array('login'=>0,'haslo'=>0,'secret'=>0);
     // Funkcja zwraca tablice z nazwami zmiennych
-    function getInterface($interfaceName){
+    public static function getInterface($interfaceName){
         switch($interfaceName){
             case 'Map':
-                $interface = $Map;
+                $interface = interfaces::$Map;
                 break;
             case 'Plan':
-                $interface = $Plan;
+                $interface = interfaces::$Plan;
                 break;
             case 'Search':
-                $interface = $Search;
+                $interface = interfaces::$Search;
                 break;
             case 'SearchPomieszczenie':
-                $interface = $SearchPomieszczenie;
+                $interface = interfaces::$SearchPomieszczenie;
                 break;
             case 'SearchPracownik':
-                $interface = $SearchPracownik;
+                $interface = interfaces::$SearchPracownik;
                 break;
             case 'AdminPanel':
-                $interface = $AdminPanel;
+                $interface = interfaces::$AdminPanel;
                 break;
             case 'AdminSession':
-                $interface = $AdminSession;
+                $interface = interfaces::$AdminSession;
                 break;
             default:
                 $interface = null;
