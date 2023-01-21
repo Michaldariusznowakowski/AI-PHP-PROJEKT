@@ -11,9 +11,6 @@
 			<li class="col-1 col-s-1">
 					<input hidden="true" type="submit" name="page" value="Map" id="Map">
 					<label for="Map">Mapa</label>
-			<li class="col-1 col-s-1">
-					<input hidden="true" type="submit" name="page" value="Plan" id="Plan">
-					<label for="Search">Plan</label>	
 			</li>
 			<li class="col-1 col-s-1">
 					<input hidden="true" type="submit" name="page" value="Search" id="Search">
