@@ -1,10 +1,9 @@
 <?php
-require 'resources/html/base.html.php';
-require 'resources/html/map.html.php';
-require 'resources/html/nav.html.php';
-require 'resources/html/search.html.php';
 class View{
     public static function render($pageName, $viewParams = null){
+        if ($viewParams == null) {
+            $viewParams = [];
+        }
         $bodyClass = $pageName;
         $main = View::processPage($pageName, $viewParams);
         extract($viewParams);
@@ -13,7 +12,7 @@ class View{
         $html = ob_get_clean();
         echo $html;
     }
-    public static function processPage($pageName, $viewParams = null){
+    public static function processPage($pageName, $viewParams){
         switch ($pageName) {
             case 'Map':
                 extract($viewParams);
@@ -43,5 +42,6 @@ class View{
                 throw new Exception("Page not found");
                 break;
         }
+        return $main;
     }
 }
