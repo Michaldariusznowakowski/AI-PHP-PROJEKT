@@ -25,13 +25,13 @@ class Model{
 
     private function getViewParams($page,$post){
         switch($page){
-            case 'Map':
+            case 'Mapa':
                 return $this->Map->getViewParams($post);
-            case 'Search':
+            case 'Szukaj':
                 return $this->Search->getViewParams($post);
             case 'Plan':
                 return $this->Plan->getViewParams($post);
-            case 'AdminPanel':
+            case 'Admin Panel':
                 return $this->AdminPanel->getViewParams($post);
         }
     }
@@ -42,7 +42,7 @@ class Model{
     }
 
     public function StartPage(){
-        View::render('Mainpage');
+        View::render('Strona Główna');
     }
     
 

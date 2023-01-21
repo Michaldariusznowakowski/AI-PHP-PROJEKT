@@ -17,35 +17,34 @@ class View{
     }
     # Function to process page
     public static function processPage($pageName, $viewParams){
+        # Zabezpieczenie przeciwko nadpisania zmiennych używanych w tej funkcji
+        if (isset($viewParams['pageName'])) {
+            unset($viewParams['pageName']);
+        }
+        if (isset($viewParams['main'])) {
+            unset($viewParams['main']);
+        }
+
+        extract($viewParams);
+        
         switch ($pageName) {
-            case 'Map':
-                extract($viewParams);
-                ob_start();
+            case 'Mapa':
                 require 'resources/html/map.html.php';
-                $main = ob_get_clean();
                 break;
-            case 'Search':
-                extract($viewParams);
-                ob_start();
+            case 'Szukaj':
                 require 'resources/html/search.html.php';
-                $main = ob_get_clean();
                 break;
             case 'Plan':
-                extract($viewParams);
-                ob_start();
                 require 'resources/html/plan.html.php';
-                $main = ob_get_clean();
                 break;
-            case 'Mainpage':
-                extract($viewParams);
-                ob_start();
-                require 'resources/html/mainpage.html.php';
-                $main = ob_get_clean();
+            case 'Admin Panel':
+                require 'resources/html/adminpanel.html.php';
                 break;
             default:
-                throw new Exception("Page not found");
+                require 'resources/html/mainpage.html.php';
                 break;
         }
+        $main = ob_get_clean();
         return $main;
     }
 }

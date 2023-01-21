@@ -21,26 +21,17 @@ class interfaces{
     // Funkcja zwraca tablice z nazwami zmiennych
     public static function getInterface($interfaceName){
         switch($interfaceName){
-            case 'Map':
+            case 'Mapa':
                 $interface = interfaces::$Map;
                 break;
             case 'Plan':
                 $interface = interfaces::$Plan;
                 break;
-            case 'Search':
+            case 'Szukaj':
                 $interface = interfaces::$Search;
                 break;
-            case 'SearchPomieszczenie':
-                $interface = interfaces::$SearchPomieszczenie;
-                break;
-            case 'SearchPracownik':
-                $interface = interfaces::$SearchPracownik;
-                break;
-            case 'AdminPanel':
+            case 'Admin Panel':
                 $interface = interfaces::$AdminPanel;
-                break;
-            case 'AdminSession':
-                $interface = interfaces::$AdminSession;
                 break;
             default:
                 $interface = null;

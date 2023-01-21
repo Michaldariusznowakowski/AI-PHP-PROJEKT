@@ -12,7 +12,7 @@ class Controller{
     public function process(){
         if(isset($_POST["page"])){
             $page = $_POST["page"];
-            if($page == "MainPage"){
+            if($page == "Strona Główna"){
                 $this->model->StartPage();
                 return;
             }
@@ -32,6 +32,9 @@ class Controller{
     // wymagane zmienne są ustawione
     function checkIfPostSet($interfaceName){
         $interface = interfaces::getInterface($interfaceName);
+        if ($interface == null) {
+            return false;
+        }
         // jeśli interfejs wymagany nie istnieje to zwracamy false
         foreach($interface as $key => $value){
             if($value == 1){
