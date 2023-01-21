@@ -7,7 +7,7 @@ class View{
         if ($viewParams == null) {
             $viewParams = [];
         }
-        $bodyClass = $pageName;
+        $HTML_PAGE_NAME = $pageName;
         $main = View::processPage($pageName, $viewParams);
         extract($viewParams);
         ob_start();
