@@ -1,4 +1,7 @@
 body { 
+	height: 100%;
+	display: flex;
+	flex-flow: column;
 	background: url(../img/background.png) center top / cover no-repeat fixed;		
 	margin: 0; 
 	padding: 0;
@@ -43,6 +46,7 @@ nav li {
 	padding:30px;
 }
 main{
+	flex-grow : 1;
 	font-family: monospace, monospace;
 	background: rgba(255, 255, 255, 0.3);
 	color:white;
