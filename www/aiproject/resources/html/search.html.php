@@ -1,7 +1,6 @@
 <?php
 $title = "Wyszukaj";
-$scriptSrc = "..resources/js/script.js";
-/** @todo add in css display:none as a default value for building-form fieldset*/
+$scriptSrc = "resources/js/script.js";
 ?>
 
 <h1><?= $title ?></h1>

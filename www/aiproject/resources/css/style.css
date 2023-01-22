@@ -80,6 +80,9 @@ button{
 	background:gray;
 	padding:10px;
 }
+#employeeForm{
+	display: none;
+}
 /* For mobile phones: */
 [class*="col-"] {
 	width: 100%;
