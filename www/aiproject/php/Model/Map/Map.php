@@ -1,84 +1,66 @@
 <?php 
 require_once 'php/Model/interface.php';
-
+require_once 'php/Model/Map/TEMP_DATABASE/base.php';
 class Map implements functions_for_model
 {
     // TODO 
     // CHANGE FOR DATABASE
-    private function CheckBuildingID(&$x, &$y)
+    private function GetBuildingData()
     {
+       
         global $buildingsArray;
-        $bc = count($buildingsArray);
+        $buildingLocations = "[";
+        $buildingData = "[";
         for ($buildingIterator = 0; $buildingIterator < count($buildingsArray); ++$buildingIterator) {
             $buildingLocation = $buildingsArray[$buildingIterator]->getLocation();
+            $buildingName = $buildingsArray[$buildingIterator]->getName();
             $xLoc = $buildingLocation->xLocation;
             $yLoc = $buildingLocation->yLocation;   
 
-            if(bccomp($x, $xLoc, 12) && bccomp($y, $yLoc, 12))
-            {
-                return $buildingIterator;
-            }        
+ 
+            $street = $buildingLocation->street;
+            $bNumber = $buildingLocation->BuildingNumber;
+            $pCode = $buildingLocation->PostalCode;
+            $city = $buildingLocation->City;
+
+
+            $buildingLocations .= <<<LOC
+            [$xLoc, $yLoc],
+            LOC;
+
+            $buildingData .= <<<DATA
+            ["$buildingName", "$street", "$bNumber" , "$pCode" , "$city"],
+            DATA;
+            // if(bccomp($x, $xLoc, 12) && bccomp($y, $yLoc, 12))
+            // {
+            //     return $buildingIterator;
+            // }        
         }
-        return -1;
+        $buildingData .= "['','','','','']]";
+        $buildingLocations .= "[-1,-1]]";
+        return [$buildingLocations,$buildingData];
     }
 
     // TODO 
     // CHANGE FOR DATABASE
-    private function GetBuildingData($buildingId)
-    {
-        global $buildingsArray;
-        if ($buildingId == -1 || $buildingId > count($buildingsArray))
-        {
-            $data = <<<RETURN
-            {"ID":"$buildingId","name": "", "content": ""}
-            RETURN;
-            return -1;
-        } 
-
-        // ASDD READING DATA FROM DATABASAE API
-        // TEST
-        $buildingName = $buildingsArray[$buildingId]->getName();
-        $buildingLocaton = $buildingsArray[$buildingId]->getLocation();
-        $street = $buildingLocaton->street;
-        $bNumber = $buildingLocaton->BuildingNumber;
-
-        $pCode = $buildingLocaton->PostalCode;
-
-        $city = $buildingLocaton->City;
-
-        $data = <<<RETURN
-        {"ID":"$buildingId","name": "$buildingName","content": "<form method='get' action='plan.php'> <input name='test' id='t' type='hidden' value='$buildingId'>$buildingName <p>$street, $bNumber</p> <p>$pCode $city</p> <button>$street</button></form>"}
-        RETURN;
-        // TESTS
-
-        return $data;
-    }
 
     public function getViewParams($post)
     {
+        global $buildingsArray;
         $output = array("MAP_MARKERS" => "");
         $output['MAP_BUTTON_CASES'] = "";
         $output['BUILDING_BUTTONS'] = "";
-        $output["DATA"] = "";
+        $output["BUILDING_LOCATIONS"] = "";
+        $output["BUILDING_DATA"] = "";
         $output["status"] = "OK";
 
-        if(!empty($_POST["Function"]))
-        {
-            // use requested funcion
-            switch($_POST["Function"])
-            {
-            case 1:
-                $x = $_POST["x"];
-                $y = $_POST["y"];    
-                $buildingId = $this->CheckBuildingID($x, $y);
-                $output["DATA"] = $this->GetBuildingData($buildingId);
-            break;
-            }
-            return $output;
-        }
+        $buildingDataAndLocation = $this->GetBuildingData();
+        $output["BUILDINGS_LOCATIONS"] = $buildingDataAndLocation[0];
+        $output["BUILDINGS_DATA"] = $buildingDataAndLocation[1];
+        
         //TODO REWRITE FOR DB
         //CHANGE AFTER DATABASE WORKS
-        require_once 'php/Model/Map/TEMP_DATABASE/base.php';
+ 
        
 
         // crate js, that will put markers on a map
