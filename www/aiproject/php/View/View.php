@@ -30,12 +30,13 @@ class View{
         # if interfaces_name == pageName foreach
         foreach (interfaces::$interfaceNames as $name => $interface) {
             if ($name == $pageName) {
+                ob_start();
                 extract($viewParams);
                 require 'resources/html/' . $interface . '.html.php';
+                $HTML_MAIN = ob_get_clean();
                 break;
             }
         }
-        $HTML_MAIN = ob_get_clean();
         return $HTML_MAIN;
     }
 }
