@@ -17,7 +17,7 @@ html, body{
 	float: left;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 600px) {
     nav ul {
         display: flex;
 		align-items: center;
