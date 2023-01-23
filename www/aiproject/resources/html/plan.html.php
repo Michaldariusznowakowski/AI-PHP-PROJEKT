@@ -12,3 +12,5 @@
 <input type="button" value="Parter">
 <input type="button" value="1">
 <input type="button" value="2">
+
+<h3> Var dump of schedule: <?php var_dump($HTML_SCHEDULE); ?> </h3>
