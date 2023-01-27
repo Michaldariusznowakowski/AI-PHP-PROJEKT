@@ -1,5 +1,6 @@
 <?php
 require 'php/Model/AdminPanel/AdminPanel.php';
+require 'php/Model/AdminLogin/AdminLogin.php';
 require 'php/Model/Map/Map.php';
 require 'php/Model/Plan/Plan.php';
 require 'php/Model/Search/Search.php';
@@ -11,12 +12,14 @@ class Model{
     private $Search=null;
     private $Plan=null;
     private $AdminPanel=null;
-
+	private $AdminLogin=null;
+	
     public function __construct(){
         $this->Map = new Map();
         $this->Search = new Search();
         $this->Plan = new Plan();
         $this->AdminPanel = new AdminPanel();
+		$this->AdminLogin = new AdminLogin();
     }
 
     private function ViewRender($page,$viewParams){
@@ -33,6 +36,8 @@ class Model{
                 return $this->Plan->getViewParams($post);
             case 'Admin Panel':
                 return $this->AdminPanel->getViewParams($post);
+			case 'Admin Login':
+                return $this->AdminLogin->getViewParams($post);
         }
     }
     
