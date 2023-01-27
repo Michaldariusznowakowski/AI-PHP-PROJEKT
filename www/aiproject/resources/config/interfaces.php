@@ -14,7 +14,8 @@ class interfaces{
         'Mapa' => 'map',
         'Plan' => 'plan',
         'Szukaj' => 'search',
-        'Admin Panel' => 'adminpanel'
+        'Admin Panel' => 'adminpanel',
+		'Admin Login' => 'adminlogin'
     );
 
     // $nazwa = array('postZmienna'=1/0) 
@@ -27,7 +28,9 @@ class interfaces{
     // Szukaj wyswietla wyniki wyszukiwania
     private static $search=array('typ'=>0, 'numerBudynku'=>0,'numerPokoju'=>0, 'imie'=>0,'nazwisko'=>0,'godzina'=>0, 'dzien'=>0);
     // AdminPanel wymaga loginu i hasla
-    private static $adminpanel=array('login'=>0,'haslo'=>0,'secret'=>0);
+    private static $adminpanel=array('login'=>1,'haslo'=>1,'secret'=>0);
+	// AdminLogin 
+    private static $adminlogin=array('login'=>0,'haslo'=>0,'secret'=>0);
     // Strona główna
     private static $mainpage=array('page'=>0);
     // Funkcja zwraca tablice z nazwami zmiennych
