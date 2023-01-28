@@ -14,7 +14,6 @@
 <?php endforeach; ?>
 </div>
 </form>
-<div class="col-12 plan-container">
     <!-- svg from file -->
     <div class="col-10">
     <?php echo $HTML_SVG_PLAN; ?>
@@ -24,22 +23,20 @@
         <div class="placeholder">
         <p>Wybierz pokój, <br /> aby otrzymać informacje <br />  dotyczące <br /> przeznaczenia <br />  pomieszczenia.</p>
         </div>
-    </div>
-</div>
-
 <script type="text/javascript">
     "use strict";
     
     ///////////////////////////////// Variables /////////////////////////////////
+    var buldingNumber = "<?php echo $HTML_BULDING_NUMBER; ?>";
+    var floorNumber = <?php echo $HTML_FLOOR_NUMBER; ?>;
     var svg_obj_ = document.querySelector("svg");
     var rooms_obj_ = svg_obj_.querySelectorAll("rect[inkscape\\:label^='pok_']");
-    // var roomsInfo = JSON.parse(-- tutaj php --);
+    var popup_obj_ = document.querySelector(".popup");
 
     ///////////////////////////////// Functions /////////////////////////////////
-
     // Create pop up from getIframe
     function createPopUp(roomNumber) {
-
+        getPopUp(buldingNumber, floorNumber, roomNumber);
     }
     // Add events to rooms
     function addEventsToRooms() {
@@ -64,20 +61,19 @@
         return year + "-" + month + "-" + day;
     }
 
-    function getIframe(bulding, floor, room) {
-        var iframe = document.createElement("iframe");
-        iframe.src = "index.php";
-        iframe.style.display = "none";
-        document.body.appendChild(iframe);
-        iframe.onload = function () {
-            iframe.contentWindow.postMessage({
-                "numerBudynku": bulding,
-                "numerPietro": floor,
-                "numerPokoju": room,
-                "page": "Plan PopUp"
-            }, "*");
+    function getPopUp(bulding, floor, room) {
+        var url = "./index.php";
+        var params = "page=Plan%20PopUp&numerBudynku=" + bulding + "&numerPietra=" + floor + "&numerPokoju=" + room;
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                popup_obj_.innerHTML = xhr.responseText;
+            }
         };
-        return iframe;
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.send(params);
+
     }
     ///////////////////////////////// View /////////////////////////////////
 
@@ -105,7 +101,7 @@
     ///////////////////////////////// Main /////////////////////////////////
     
     addEventsToRooms();
-    getTeacher("Anna", "Barcz", getCurrentDay(), getCurrentDay());
+    // getTeacher("Anna", "Barcz", getCurrentDay(), getCurrentDay());
 
     
 

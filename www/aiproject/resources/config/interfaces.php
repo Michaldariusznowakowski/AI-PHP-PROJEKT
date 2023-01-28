@@ -22,7 +22,7 @@ class interfaces{
     // bez navbara, footera i base.html.php 
     // Przykład: 'planpopup'  
     //   wyświetli tylko planpopup.html.php (Popup zostanie użyty w Plan.html.php przy uzyciu JS jako dymek)
-    private static $ownHTML=array('planpopup');
+    private static $ownHTML=array('PlanPopUp');
 
     // $nazwa = array('postZmienna'=1/0) 
     // 1 - wymagana,
@@ -41,7 +41,7 @@ class interfaces{
     // Strona główna
     private static $MainPage=array('page'=>0);
     // Plan PopUp
-    private static $PlanPopUp=array('numerBudynku'=>1,'numerPietro'=>1,'numerPokoju'=>1);
+    private static $PlanPopUp=array('numerBudynku'=>1,'numerPietra'=>1,'numerPokoju'=>1);
     // Funkcja zwraca tablice z nazwami zmiennych
     public static function getInterface($interfaceName){
         foreach (interfaces::$interfaceNames as $name => $interface) {

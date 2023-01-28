@@ -30,3 +30,26 @@
     text-align: center;
     font-size: 180%;
 }
+.Plan .popup {
+    padding: 1%;
+
+}
+.Plan .popup h2{
+    font-size: 100%;
+    padding: 0;
+    margin: 0;
+    color: white
+}
+.Plan .popup p{
+    font-size: 90%;
+    padding: 0;
+    margin: 0;
+    color: rgb(151, 151, 151);
+}
+.Plan .popup a{
+    font-size: 90%;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    color: rgb(127, 111, 172);
+}

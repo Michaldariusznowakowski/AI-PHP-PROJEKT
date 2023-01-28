@@ -29,8 +29,11 @@ class View{
         }
         ob_start();
         extract($viewParams);
-        require 'resources/html/'.$HTML_PAGE.'.html.php';
+        require 'resources/html/'.strtolower($HTML_PAGE).'.html.php';
         $HTML_MAIN = ob_get_clean();
+        if (interfaces::getOwnHTML($HTML_PAGE)) {
+            return $HTML_MAIN;
+        }
         ob_start();
         require 'resources/html/base.html.php';
         $HTML = ob_get_clean();
