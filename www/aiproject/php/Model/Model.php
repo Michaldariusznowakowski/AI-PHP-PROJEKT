@@ -26,12 +26,15 @@ class Model{
     }
 
     private function getViewParams($page,$post){
-        print(count($this->models));
         eval('$viewParams=$this->models[$page]->getViewParams($post);');
         return $viewParams;
     }
     
     public function getPage($page, $post) {
+        if ($page == "MainPage") {
+            $this->StartPage();
+            return;
+        }
         $viewParams = $this->getViewParams($page, $post);
         $this->ViewRender($page, $viewParams);
     }

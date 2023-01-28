@@ -53,7 +53,7 @@ class Map implements functions_for_model
         $output["BUILDING_LOCATIONS"] = "";
         $output["BUILDING_DATA"] = "";
         $output["status"] = "OK";
-
+        $output["pageName"] = "Map";
         $buildingDataAndLocation = $this->GetBuildingData();
         $output["BUILDINGS_LOCATIONS"] = $buildingDataAndLocation[0];
         $output["BUILDINGS_DATA"] = $buildingDataAndLocation[1];

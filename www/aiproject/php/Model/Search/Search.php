@@ -8,6 +8,7 @@ class Search implements functions_for_model
         # Input : array("a" => "one", "b" => "two", "c" => "three")
         # Extract(Input) : $a = "one" , $b = "two" , $c = "three"
         $output = array("status" => "OK");
+        $output["pageName"] = "Search";
         return $output;
     }
 }

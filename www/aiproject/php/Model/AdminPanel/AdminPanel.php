@@ -45,7 +45,7 @@ class AdminPanel implements functions_for_model
         # How to return values used in View
         # Input : array("a" => "one", "b" => "two", "c" => "three")
         # Extract(Input) : $a = "one" , $b = "two" , $c = "three"
-        
+        $output["pageName"] = "AdminPanel";
         return $output;
     }
 }

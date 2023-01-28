@@ -15,6 +15,7 @@ class Plan implements functions_for_model
         //                "HTML_SCHEDULE" => $schedule);
         
         $output = array(
+            "pageName" => "Plan",
             "HTML_BULDING_NUMBER" => $post['numerBudynku'],
             "HTML_SVG_PLAN" => $this->getPlan($buildingNumber, $floorNumber),
             "HTML_FLOOR_NUMBER" => $floorNumber,
