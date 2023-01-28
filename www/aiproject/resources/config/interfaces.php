@@ -15,6 +15,7 @@ class interfaces{
         'Plan' => 'Plan',
         'Szukaj' => 'Search',
         'Admin Panel' => 'AdminPanel',
+	'Admin Login' => 'AdminLogin',
         "Plan PopUp" => "PlanPopUp"
     );
 
@@ -35,9 +36,9 @@ class interfaces{
     // Szukaj wyswietla wyniki wyszukiwania
     private static $Search=array('typ'=>0, 'numerBudynku'=>0,'numerPokoju'=>0, 'imie'=>0,'nazwisko'=>0,'godzina'=>0, 'dzien'=>0);
     // AdminPanel wymaga loginu i hasla
-    private static $adminpanel=array('login'=>1,'haslo'=>1,'secret'=>0);
+    private static $AdminPanel=array('login'=>1,'haslo'=>1,'secret'=>0);
 	// AdminLogin 
-    private static $adminlogin=array('login'=>0,'haslo'=>0,'secret'=>0);
+    private static $AdminLogin=array('login'=>0,'haslo'=>0,'secret'=>0);
     // Strona główna
     private static $MainPage=array('page'=>0);
     // Plan PopUp
