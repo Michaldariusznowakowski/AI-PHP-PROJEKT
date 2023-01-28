@@ -1,11 +1,8 @@
-
-
 <h1>Mapa</h1>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
 <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 <script src=<?= $scriptSrc?>></script>
 <div id="map" class="map col-12" style="height: 400px;"></div>
-
 <?php echo $BUILDING_BUTTONS; ?>
 
 <script>
@@ -50,18 +47,15 @@
             if ( (Math.abs(BuildingsLoc[i][0] - x) <= precision) && (Math.abs(BuildingsLoc[i][1] - y) <= precision) )
             {
                 let name = BuildingsData[i][0];
-                let street = BuildingsData[i][1];
-                let number = BuildingsData[i][2];
-                let postalCode = BuildingsData[i][3];
-                let city = BuildingsData[i][4];
-        
+                let adress = BuildingsData[i][2];
+                let number = BuildingsData[i][1];
+
                 var content =`
                     <form action="index.php" method="post"> 
                     <input type="hidden" name="page" value="Plan">
                     <input type="hidden" name="numerBudynku" value="${name}">
                     ${name}
-                    <p>${street}, ${number}</p>
-                    <p>${postalCode} ${city}</p> 
+                    <p>${adress}</p>
                     <button>Plan</button>
                     </form>
                 `

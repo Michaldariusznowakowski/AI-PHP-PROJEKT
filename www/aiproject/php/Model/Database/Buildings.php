@@ -101,7 +101,7 @@ class Buildings{
         $sql = 'SELECT * FROM budynki';
         $statement = $pdo->prepare($sql);
         $statement->execute();
-        print_r($statement);
+        //print_r($statement);
         $posts = [];
         $postsArray = $statement->fetchAll(PDO::FETCH_ASSOC);
         foreach ($postsArray as $postArray) {

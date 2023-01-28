@@ -1,52 +1,44 @@
 <?php 
 require_once 'php/Model/interface.php';
-require_once 'php/Model/Map/TEMP_DATABASE/base.php';
+require_once 'php\Model\Database\Buildings.php';
+
 class Map implements functions_for_model
 {
-    // TODO 
-    // CHANGE FOR DATABASE
     private function GetBuildingData()
     {
-       
-        global $buildingsArray;
+        $a = new Buildings();
+        $buildingsArray = $a->findAll();
+        $a->delete();
+
         $buildingLocations = "[";
         $buildingData = "[";
         for ($buildingIterator = 0; $buildingIterator < count($buildingsArray); ++$buildingIterator) {
-            $buildingLocation = $buildingsArray[$buildingIterator]->getLocation();
-            $buildingName = $buildingsArray[$buildingIterator]->getName();
-            $xLoc = $buildingLocation->xLocation;
-            $yLoc = $buildingLocation->yLocation;   
+            // get building information from database
+            $buildingDescription = $buildingsArray[$buildingIterator]->getAdditionalDesc(); 
+            $adress = $buildingsArray[$buildingIterator]->getBuildingAddress();
+            $buildingNumber = $buildingsArray[$buildingIterator]->getBuildingNumber();
+            $buildingData .= <<<DATA
+            ["$buildingDescription", "$buildingNumber" , "$adress"],
+            DATA;    
 
- 
-            $street = $buildingLocation->street;
-            $bNumber = $buildingLocation->BuildingNumber;
-            $pCode = $buildingLocation->PostalCode;
-            $city = $buildingLocation->City;
-
-
+            // get building location from database
+            $xLoc = $buildingsArray[$buildingIterator]->getLatitude();
+            $yLoc = $buildingsArray[$buildingIterator]->getLongitude();  
             $buildingLocations .= <<<LOC
             [$xLoc, $yLoc],
             LOC;
-
-            $buildingData .= <<<DATA
-            ["$buildingName", "$street", "$bNumber" , "$pCode" , "$city"],
-            DATA;
-            // if(bccomp($x, $xLoc, 12) && bccomp($y, $yLoc, 12))
-            // {
-            //     return $buildingIterator;
-            // }        
         }
-        $buildingData .= "['','','','','']]";
+        $buildingData .= "['','','']]";
         $buildingLocations .= "[-1,-1]]";
         return [$buildingLocations,$buildingData];
     }
 
-    // TODO 
-    // CHANGE FOR DATABASE
-
     public function getViewParams($post)
     {
-        global $buildingsArray;
+        $a = new Buildings();
+        $buildingsArray = $a->findAll();
+        $a->delete();
+        
         $output = array("MAP_MARKERS" => "");
         $output['MAP_BUTTON_CASES'] = "";
         $output['BUILDING_BUTTONS'] = "";
@@ -57,18 +49,15 @@ class Map implements functions_for_model
         $buildingDataAndLocation = $this->GetBuildingData();
         $output["BUILDINGS_LOCATIONS"] = $buildingDataAndLocation[0];
         $output["BUILDINGS_DATA"] = $buildingDataAndLocation[1];
-        
-        //TODO REWRITE FOR DB
-        //CHANGE AFTER DATABASE WORKS
- 
-       
 
         // crate js, that will put markers on a map
         for($buildingIterator = 0; $buildingIterator < count($buildingsArray); ++$buildingIterator)
         {
-            $buildingLocation = $buildingsArray[$buildingIterator]->getLocation();
-            $xLoc = $buildingLocation->xLocation;
-            $yLoc = $buildingLocation->yLocation;
+            // get building location from database
+            $xLoc = $buildingsArray[$buildingIterator]->getLatitude();
+            $yLoc = $buildingsArray[$buildingIterator]->getLongitude();  
+
+            // create js code as string 
             $output["MAP_MARKERS"] .= <<<MARK
                 var marker = L.marker([$xLoc, $yLoc]).addTo(map);
                 marker.on('click', onPolyClick);
@@ -85,12 +74,11 @@ class Map implements functions_for_model
         // crate cases for buttons, that will put markers on a map
         for($buildingIterator = 0; $buildingIterator < count($buildingsArray); ++$buildingIterator)
         {
-            $buildingLocation = $buildingsArray[$buildingIterator]->getLocation();
-            $xLoc = $buildingLocation->xLocation;
-            $yLoc = $buildingLocation->yLocation;
+            $xLoc = $buildingsArray[$buildingIterator]->getLatitude();
+            $yLoc = $buildingsArray[$buildingIterator]->getLongitude();  
             $output['MAP_BUTTON_CASES'] .= <<<CASE
                 case $buildingIterator:
-                    map.panTo([$xLoc,$yLoc],18);
+                    map.panTo([$xLoc,$yLoc],16);
                 break; \n
             CASE;
         }
@@ -98,17 +86,11 @@ class Map implements functions_for_model
 
         for($buildingIterator = 0; $buildingIterator < count($buildingsArray); ++$buildingIterator)
         {
-            $BuildingName = $buildingsArray[$buildingIterator]->getName();
+            $BuildingName = $buildingsArray[$buildingIterator]->getAdditionalDesc();
             $output['BUILDING_BUTTONS'] .= <<<BUTTON
                 <button onClick="ButtonOnClick($buildingIterator)"> <p>$BuildingName</p></button>
             BUTTON;
         }
-
-
-        // END DATABASE
-        # How to return values used in View
-        # Input : array("a" => "one", "b" => "two", "c" => "three")
-        # Extract(Input) : $a = "one" , $b = "two" , $c = "three"
         $output["status"] = "OK";
         return $output;
     }
