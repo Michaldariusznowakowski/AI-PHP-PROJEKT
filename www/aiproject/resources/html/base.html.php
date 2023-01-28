@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="../resources/css/custom.css">
     <title><?= $HTML_PAGE_NAME ?? 'Donde' ?></title>
 </head>
-<body <?= isset($HTML_PAGE_NAME) ? "class='$HTML_PAGE_NAME'" : '' ?>>
-<?php require(__DIR__ . DIRECTORY_SEPARATOR . 'navbar.html.php') ?>
+<body <?= isset($HTML_PAGE) ? "class='$HTML_PAGE'" : '' ?>>
+<?php echo $HTML_NAVBAR?>
 <main class="col-12"><?= $HTML_MAIN ?? null ?></main>
-<?php require(__DIR__ . DIRECTORY_SEPARATOR . 'footer.html.php') ?>
+<?php echo $HTML_FOOTER ?>
 </body>
 </html>
