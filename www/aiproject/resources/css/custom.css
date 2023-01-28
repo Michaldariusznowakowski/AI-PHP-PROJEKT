@@ -1,23 +1,23 @@
 /* W jaki sposób stworzyć własny wygląd body? */
 /* Każdy moduł ma zarezerwowaną nazwe klasy body: */
-.mainpage {
+.MainPage {
  color: white;
 }
-.map {
+.Map {
  color: white;
 }
-.adminpanel {
+.Adminpanel {
  color: white;
 }
-.search {
+.Search {
  color: white;
 }
-.plan .plan-container {
+.Plan .plan-container {
     display: flex;
     justify-content: center;
 }
 
-.plan .popup {
+.Plan .popup {
     /* Add gray transparent background to this div */
     background-color: #00000063;
     display: flex;
@@ -25,7 +25,7 @@
     align-items: center;
     justify-content: center;
 }
-.plan .popup .placeholder {
+.Plan .popup .placeholder {
     /* Add gray transparent background to this div */
     text-align: center;
     font-size: 180%;
