@@ -5,7 +5,7 @@ class AdminPanel implements functions_for_model
 {
     public function getViewParams($post)
     {
-		
+		session_start();
 	
 		$login = $_POST["login"];
 		$haslo = $_POST["haslo"];
