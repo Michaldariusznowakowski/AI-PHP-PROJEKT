@@ -1,5 +1,6 @@
 <?php 
 require_once 'php/Model/interface.php';
+require_once 'php/Model/Database/Database.php';
 class AdminPanel implements functions_for_model
 {
     public function getViewParams($post)
@@ -8,11 +9,14 @@ class AdminPanel implements functions_for_model
 	
 		$login = $_POST["login"];
 		$haslo = $_POST["haslo"];
+
 		
+		$conn = Database::dbConnection();
 		$sql="SELECT * FROM users WHERE login='$login'";
 		
-		$hasloFromDatabase='e833656cfb0e083c09ecc705b5a5b0d7a1faa28008e7f5739f5d96dee2b56af575fe4ddf08cf527a14fb9345bb649d143a9d6cdd2da738e1ed28d97ec63cfd44';
-		
+		$stmt = $conn->query($sql);
+		$row = $stmt->fetch();		
+		$hasloFromDatabase=$row['haslo'];
 		
 		$sol = md5("mnxfcgbuirtd");
 		$sol2 = sha1("esrf537Ggc");
