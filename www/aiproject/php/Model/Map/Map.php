@@ -92,6 +92,8 @@ class Map implements functions_for_model
             BUTTON;
         }
         $output["status"] = "OK";
+        $output["pageName"] = "Map";
+
         return $output;
     }
 }
