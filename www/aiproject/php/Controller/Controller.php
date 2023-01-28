@@ -56,6 +56,11 @@ class Controller{
                 }
             }
         }
+        if ($interfaceName == "Mapa") {
+            if (is_uploaded_file($_FILES['userFile']['name'])) {
+                $posts['userFile'] = $_FILES['userFile']['tmp_name'];
+            }
+        }
         return $posts;
     }
 }
