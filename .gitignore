@@ -1,2 +1,9 @@
 tmp/*
 xampp-control.log
+apache/logs/error.log
+apache/logs/httpd.pid
+mysql/data/ib_logfile0
+mysql/data/ibtmp1
+mysql/data/mysql_error.log
+mysql/data/mysql.pid
+mysql/data/mysql/db.MAI
