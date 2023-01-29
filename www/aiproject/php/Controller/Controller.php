@@ -56,11 +56,12 @@ class Controller{
                 }
             }
         }
-        if ($interfaceName == "Mapa") {
-            if (is_uploaded_file($_FILES['userFile']['name'])) {
-                $posts['userFile'] = $_FILES['userFile']['tmp_name'];
-            }
-        }
+        // if ($interfaceName == "Polska nazwa modułu") {
+        //     if (is_uploaded_file($_FILES['userFile']['tmp_name'])) {
+        //         $posts['userFile'] = $_FILES['userFile'];
+
+        //     }
+        // }
         return $posts;
     }
 }
