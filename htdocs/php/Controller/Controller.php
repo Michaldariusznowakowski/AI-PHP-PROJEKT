@@ -50,11 +50,9 @@ class Controller{
         $interface = interfaces::getInterface($interfaceName);
         $posts = array();
         foreach($interface as $key => $value){
-            if($value==1){
                 if(isset($_POST[$key])){
                     $posts[$key] = $_POST[$key];
                 }
-            }
         }
         // if ($interfaceName == "Polska nazwa modułu") {
         //     if (is_uploaded_file($_FILES['userFile']['tmp_name'])) {
