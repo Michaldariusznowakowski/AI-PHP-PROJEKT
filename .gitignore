@@ -14,6 +14,7 @@ tmp
 tomcat
 webalizer
 webdav
+mysql
 apache_start.bat
 apache_stop.bat
 catalina_start.bat
@@ -28,4 +29,6 @@ test_php.bat
 xampp_start.exe
 xampp_stop.exe
 xampp_control.exe
+xampp-control.exe
 xampp-control.ini
+catalina_service.bat
