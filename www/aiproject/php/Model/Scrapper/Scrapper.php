@@ -1,6 +1,6 @@
 <?php
 class Scrapper {
-    public static $url_ = "https://plan.zut.edu.pl/schedule_student.php?teacher={name}%20{surname}&start={start}T00:00:00+01:00&end={end}T00:00:00+01:00";
+    public static $url_ = "https://plan.zut.edu.pl/schedule_student.php?teacher={surname}%20{name}&start={start}&end={end}";
     public static function getSchedule($name, $surname, $start, $end) {
         if ($name == null || $surname == null || $start == null || $end == null) {
             return null;
