@@ -3,7 +3,7 @@ require 'resources/config/interfaces.php';
 require 'php/Model/Model.php';
 class Controller{
     private $model;
-    //constructor tworzacy obiekt modelu
+
     public function __construct(){
         $this->model = new Model();
     }
@@ -14,8 +14,12 @@ class Controller{
             $page = $_POST["page"];
             // sprawdzamy czy wszystkie wymagane zmienne są ustawione
             if($this->checkIfPostSet($page)){
+                
                 $posts = $this->getPosts($page);
-                $this->model->getPage($page, $posts);
+                
+                // przekaż do page nazwe interfejsu i tablice z danymi przeszukaj getInterface
+                $pageInterface=interfaces::getInterfaceName($page);
+                $this->model->getPage($pageInterface,$posts);
                 return;
             }
         }
@@ -52,6 +56,12 @@ class Controller{
                 }
             }
         }
+        // if ($interfaceName == "Polska nazwa modułu") {
+        //     if (is_uploaded_file($_FILES['userFile']['tmp_name'])) {
+        //         $posts['userFile'] = $_FILES['userFile'];
+
+        //     }
+        // }
         return $posts;
     }
 }

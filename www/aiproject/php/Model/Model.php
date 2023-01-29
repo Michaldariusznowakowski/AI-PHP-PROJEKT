@@ -1,48 +1,46 @@
 <?php
-require 'php/Model/AdminPanel/AdminPanel.php';
-require 'php/Model/Map/Map.php';
-require 'php/Model/Plan/Plan.php';
-require 'php/Model/Search/Search.php';
+require_once 'resources/config/interfaces.php';
 require 'php/View/View.php';
-
+foreach(interfaces::$interfaceNames as $name => $interface) {
+    if ($interface == "MainPage") {
+        continue;
+    }
+    require 'php/Model/'.$interface.'/'.$interface.'.php';
+}
 
 class Model{
-    private $Map=null;
-    private $Search=null;
-    private $Plan=null;
-    private $AdminPanel=null;
-
+    private $models;
     public function __construct(){
-        $this->Map = new Map();
-        $this->Search = new Search();
-        $this->Plan = new Plan();
-        $this->AdminPanel = new AdminPanel();
+        foreach(interfaces::$interfaceNames as $name => $interface) {
+            if ($interface == "MainPage") {
+                continue;
+            }
+            eval('$int = new '.$interface.'();');
+            $this->models[$interface] = $int;
+            
+        }
     }
 
     private function ViewRender($page,$viewParams){
-        View::render($page,$viewParams);
+        View::render($viewParams);
     }
 
     private function getViewParams($page,$post){
-        switch($page){
-            case 'Mapa':
-                return $this->Map->getViewParams($post);
-            case 'Szukaj':
-                return $this->Search->getViewParams($post);
-            case 'Plan':
-                return $this->Plan->getViewParams($post);
-            case 'Admin Panel':
-                return $this->AdminPanel->getViewParams($post);
-        }
+        eval('$viewParams=$this->models[$page]->getViewParams($post);');
+        return $viewParams;
     }
     
-    public function getPage($page, $posts) {
-        $viewParams = $this->getViewParams($page, $posts);
+    public function getPage($page, $post) {
+        if ($page == "MainPage") {
+            $this->StartPage();
+            return;
+        }
+        $viewParams = $this->getViewParams($page, $post);
         $this->ViewRender($page, $viewParams);
     }
 
     public function StartPage(){
-        View::render('Strona Główna');
+        View::render();
     }
     
 
