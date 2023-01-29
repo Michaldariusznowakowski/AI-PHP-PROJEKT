@@ -1,6 +1,2 @@
-bin
-etc
-tmp
-usr
-www/index.php
-laragon.exe
+tmp/*
+xampp-control.log
