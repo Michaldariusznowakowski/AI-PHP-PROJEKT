@@ -53,7 +53,7 @@
                 var content =`
                     <form action="index.php" method="post"> 
                     <input type="hidden" name="page" value="Plan">
-                    <input type="hidden" name="numerBudynku" value="${name}">
+                    <input type="hidden" name="numerBudynku" value="${number}">
                     ${name}
                     <p>${adress}</p>
                     <button>Plan</button>

@@ -99,6 +99,20 @@ class Floors{
         $post = Floors::fromArray($postArray);
         return $post;
     }
+    public static function findBuildingIDFloorNumber($BuildingID, $floorNumber): ?Floors
+    {
+        $pdo = new Database();
+        $pdo = $pdo->dbConnection();
+        $sql = 'SELECT * FROM pietra WHERE Budynki_idBudynki = :idBudynku AND NumerPietra = :NumerPietra';
+        $statement = $pdo->prepare($sql);
+        $statement->execute(['idBudynku' => $BuildingID , 'NumerPietra' => $floorNumber]);
+        $postArray = $statement->fetch(PDO::FETCH_ASSOC);
+        if (! $postArray) {
+            return null;
+        }
+        $post = Floors::fromArray($postArray);
+        return $post;
+    }
 
     public function save(): void
     {

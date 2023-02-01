@@ -99,6 +99,20 @@ class Rooms{
         $post = Rooms::fromArray($postArray);
         return $post;
     }
+    public static function findFloorIDNumberRoom($floorID, $roomNumber): ?Rooms
+    {
+        $pdo = new Database();
+        $pdo = $pdo->dbConnection();
+        $sql = 'SELECT * FROM pokoje WHERE Pietra_idPietra = :Pietra_idPietra AND NumerPokoju = :NumerPokoju';
+        $statement = $pdo->prepare($sql);
+        $statement->execute(['Pietra_idPietra' => $floorID, 'NumerPokoju' => $roomNumber]);
+        $postArray = $statement->fetch(PDO::FETCH_ASSOC);
+        if (! $postArray) {
+            return null;
+        }
+        $post = Rooms::fromArray($postArray);
+        return $post;
+    }
 
     public function save(): void
     {

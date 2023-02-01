@@ -1,63 +1,85 @@
 <?php
+require_once 'php/Model/DataBase/Buildings.php';
+require_once 'php/Model/DataBase/Floors.php';
+require_once 'php/Model/DataBase/Rooms.php';
+require_once 'php/Model/Database/EmployeesInRooms.php';
 require_once 'php/Model/Scrapper/Scrapper.php';
+require_once 'php/Model/Database/Employees.php';
 class PlanPopUp implements functions_for_model {
+
+    public function __construct() {
+    }
     public function getViewParams($post) {
-
-
-// <h2>Rodzaj pomieszczenia:</h2>
-// <p> <?php echo $HTML_ROOM["TYPE"];</p>
-// echo "<h2>Rodzaj pomieszczenia:</h2>";
-// echo "<p>" . $HTML_ROOM["TYPE"] . "</p>";
-// echo "<h2> Informacje o pomieszczeniu: </h2>";
-// echo "<p>" . $HTML_ROOM["INFO"] . "</p>";
-// if($HTML_ROOM["TYPE"] == "Gabinet") {
-// // Get lenght of [TEACHER] array
-// $len = count($HTML_ROOM["TEACHER"]);
-// // If there is more than one teacher
-// for($i = 0; $i < $len; $i++) {
-// echo "<h2>Pracownik:</h2>";
-// echo "<p>" . $HTML_ROOM["TEACHER"][$i] . "</p>";
-// echo "<h2>Plan zajęć pracownika:</h2>";
-// echo "<a href='$HTML_ROOM[TEACHER_SCHEDULE][$i]'>Link do planu zajęć</a>";
-// echo "<h2>Obecne zajęcia pracownika:</h2>";
-// echo "<p>" . $HTML_ROOM["TEACHER_CURRENT_LESSON"][$i] . "</p>";
-// echo "<h2>Najbliższe zajęcia pracownika:</h2>";
-// echo "<p>" . $HTML_ROOM["TEACHER_NEXT_LESSON"][$i] . "</p>";
-// echo "<h2>Gdzie najczęściej pracownik się znajduje:</h2>";
-// foreach($HTML_ROOM["TEACHER_FAVOURITE_ROOMS"][$i] as $room) {
-//     echo "<p> Pokój " . $room . "</p>";
-// }
-// }
-// }
-
         $numerBudynku = $post['numerBudynku'];
         $numerPietra = $post['numerPietra'];
         $numerPomieszczenia = $post['numerPokoju'];
-
         $output = array();
         $output['pageName'] = "PlanPopUp";
         $output['HTML_ROOM'] = $this->getRoomInfo($numerBudynku, $numerPietra, $numerPomieszczenia);
-
         return $output;
-        
     }
     private function getRoomInfo($numerBudynku, $numerPietra, $numerPomieszczenia) {
         // Temporary function
         $output = array();
-        $output['TYPE'] = "Gabinet";
-        $output['INFO'] = "Gabinet informatyczny";
-        $name = "Anna";
-        $surname = "Barcz";
-        $name2 = "Włodzimierz";
-        $surname2 = "Chocianowicz";
-        $output['TEACHER'] = array($name . " " . $surname, $name2 . " " . $surname2);
-        $url = "http://www.google.com";
-        $plan = $this->getSchedule($name, $surname);
-        $plan2 = $this->getSchedule($name2, $surname2);
-        $output['TEACHER_SCHEDULE'] = array($url, $url);
-        $output['TEACHER_CURRENT_LESSON'] = array($plan['TEACHER_CURRENT_LESSON'], $plan2['TEACHER_CURRENT_LESSON']);
-        $output['TEACHER_NEXT_LESSON'] = array($plan['TEACHER_NEXT_LESSON'], $plan2['TEACHER_NEXT_LESSON']);
-        $output['TEACHER_FAVOURITE_ROOMS'] = array(array("A1", "A2"), array("B1", "B2"));
+
+        $DB_BUDYNEK = Buildings::findNumber($numerBudynku);
+
+        $idbudynku = $DB_BUDYNEK->getBuildingID();
+
+        $DB_FLOORS = Floors::findBuildingIDFloorNumber($numerBudynku ,$numerPietra);
+        $idpietra = $DB_FLOORS->getFloorID();
+
+        if ($idpietra == null) {
+            $output['TYPE'] = "Błąd w bazie danych, nie ma takiego piętra.";
+            return $output;
+        }
+
+        $DB_ROOMS = Rooms::findFloorIDNumberRoom($idpietra,$numerPomieszczenia);  
+        if ($DB_ROOMS == null) {
+            $output['TYPE'] = "Błąd w bazie danych, nie ma takiego pokoju.";
+            return $output;
+        }
+        
+        $idpomieszczenia = $DB_ROOMS->getRoomID();
+
+        if ($idpomieszczenia == null) {
+            $output['TYPE'] = "Brak informacji o tym pokoju.";
+            return $output;
+        }
+        $typ = $DB_ROOMS->getRoomType();
+        if ($typ == null) {
+            $output['TYPE'] = "Błąd w bazie danych, nie ma takiego typu pokoju.";
+            return $output;
+        } elseif ($typ == 1) {
+            $output['TYPE'] = "Sala wykładowa/laboratorium";
+            return $output;
+        } else {
+            $output['TYPE'] = "Gabinet";
+        }
+
+        $DB_EMPLOYEES = EmployeesInRooms::findByRooms($idpomieszczenia);
+        $len = count($DB_EMPLOYEES);
+        print_r($DB_EMPLOYEES);
+        for ($i = 0; $i < $len; $i++) {
+            $idpracownika = $DB_EMPLOYEES[$i]->getEmployeeID();
+            $DB_EMPLOYEES = Employees::find($idpracownika);
+            $output['TEACHER-NAME'][$i] = $DB_EMPLOYEES->getName();
+            $output['TEACHER-SURNAME'][$i] = $DB_EMPLOYEES->getSurname();
+            $output['TEACHER-ACADEMIC-TITLE'][$i] = $DB_EMPLOYEES->getAcademicTitle();
+            $DB_EMPLOYEES_IN_ROOMS = EmployeesInRooms::findByEmployees($idpracownika);
+            $len = count($DB_EMPLOYEES_IN_ROOMS);
+            for ($k = 0; $k < $len; $k++) {
+                    $roomid=$DB_EMPLOYEES_IN_ROOMS[$k]->getRoomID();
+                    $DB_ROOMS=Rooms::find($roomid);
+                    $room = $DB_ROOMS->getRoomNumber();
+                    $output['TEACHER-FAVORITE-ROOMS'][$i][$k] = $room;
+            }   
+        }
+        $numOfteachers= count($output['TEACHER-NAME']);
+        for ($i = 0; $i < $numOfteachers; $i++) {
+            $output['TEACHER-SCHEDULE'][$i] = $this->getSchedule($output['TEACHER-NAME'][$i], $output['TEACHER-SURNAME'][$i]);
+        }
+        
         return $output;
     }
     private function getSchedule($name, $surname) {
@@ -69,14 +91,13 @@ class PlanPopUp implements functions_for_model {
         $maxLastDate->add(new DateInterval('P20D'));
         $end = $maxLastDate->format(DateTime::ATOM);
         $plan = Scrapper::getSchedule($name, $surname, $today, $end);
-        // $plan for each
         $output = array();
         $output['TEACHER_CURRENT_LESSON'] = "Brak zajęć w tym momencie.";
         $output['TEACHER_NEXT_LESSON'] = "Brak zajęć w przeciągu najbliższych 20 dni.";
         if($plan != null) {
             if (is_array($plan) || is_object($plan)) {
                 if ($plan[0]["end"] < $currentTime->format(DateTime::ATOM)) { // Obecne zajęcia
-                    $output['TEACHER_CURRENT_LESSON'] = $plan[0]["title"] + "\n" + $plan[0]["room"];
+                    $output['TEACHER_CURRENT_LESSON'] = $plan[0]["title"] . "\n" . $plan[0]["room"];
                 }
             if (count($plan) > 1) {
                 $humanDateFormat = new DateTime($plan[1]["start"]);

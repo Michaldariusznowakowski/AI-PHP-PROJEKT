@@ -5,7 +5,7 @@ class Plan implements functions_for_model
 {
     public function getViewParams($post)
     {
-        if (!isset($post['numerPiętra'])) $post['numerPiętra'] = 0;
+        if (!isset($post['numerPiętra'])) $post['numerPiętra'] = 1;
         $floorNumber = $post['numerPiętra'];
         $buildingNumber = $post['numerBudynku'];
         
@@ -18,13 +18,13 @@ class Plan implements functions_for_model
             "pageName" => "Plan",
             "HTML_BULDING_NUMBER" => $post['numerBudynku'],
             "HTML_SVG_PLAN" => $this->getPlan($buildingNumber, $floorNumber),
-            "HTML_FLOOR_NUMBER" => $floorNumber,
-            "HTML_FLOOR_LIST" => $floorsList);
+            "HTML_FLOOR_NUMBER" => $floorNumber, // temp
+            "HTML_FLOOR_LIST" => $floorsList); // temp
         return $output;
     }
     private function getPlanFilePath($buildingNumber, $floorNumber = 0){
         // TODO: get plan from database
-        return "upload/1231412566t3121.svg";
+        return "upload/pietro1.svg";
     }
     private function getPlan($buildingNumber, $floorNumber){
         $filePath = $this->getPlanFilePath($buildingNumber, $floorNumber);

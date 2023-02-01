@@ -101,7 +101,6 @@ class Buildings{
         $sql = 'SELECT * FROM budynki';
         $statement = $pdo->prepare($sql);
         $statement->execute();
-        //print_r($statement);
         $posts = [];
         $postsArray = $statement->fetchAll(PDO::FETCH_ASSOC);
         foreach ($postsArray as $postArray) {
@@ -118,6 +117,20 @@ class Buildings{
         $sql = 'SELECT * FROM budynki WHERE idBudynki = :idBudynki';
         $statement = $pdo->prepare($sql);
         $statement->execute(['idBudynki' => $buildingID]);
+        $postArray = $statement->fetch(PDO::FETCH_ASSOC);
+        if (! $postArray) {
+            return null;
+        }
+        $post = Buildings::fromArray($postArray);
+        return $post;
+    }
+    public static function findNumber($buildingNumber): ?Buildings
+    {
+        $pdo = new Database();
+        $pdo = $pdo->dbConnection();
+        $sql = 'SELECT * FROM budynki WHERE NumerBudynku = :numerBudynku';
+        $statement = $pdo->prepare($sql);
+        $statement->execute(['numerBudynku' => $buildingNumber]);
         $postArray = $statement->fetch(PDO::FETCH_ASSOC);
         if (! $postArray) {
             return null;
