@@ -7,10 +7,10 @@ class AdminPanel implements functions_for_model
     {
 		session_start();
 	
-		$login = $_POST["login"];
-		$haslo = $_POST["haslo"];
+		$login = $post["login"];
+		$haslo = $post["haslo"];
 		
-		/*
+		
 		$var = new Database();
 		$conn = $var->dbConnection();
 		
@@ -22,16 +22,14 @@ class AdminPanel implements functions_for_model
 			haslo TEXT NOT NULL
 		);");
 		$conn->exec("INSERT IGNORE INTO users (id, login, haslo) VALUES (1, 'student', 'c8decb2f562cbe295637c905870be7a615c456db2aaa9372066a0d740aaf7123a78e56d91c4177048dc756067ab05a0dc74d33b15004ef4170b892e9ab38a0f6');");
-
+		
 
 
 		$sql="SELECT * FROM users WHERE login='$login'";
 		$stmt = $conn->query($sql);
 		$row = $stmt->fetch();		
 		$hasloFromDatabase=$row['haslo'];
-		*/
 		
-		$hasloFromDatabase='c8decb2f562cbe295637c905870be7a615c456db2aaa9372066a0d740aaf7123a78e56d91c4177048dc756067ab05a0dc74d33b15004ef4170b892e9ab38a0f6';
 		
 		$sol = md5("mnxfcgbuirtd");
 		$sol2 = sha1("esrf537Ggc");
@@ -40,8 +38,36 @@ class AdminPanel implements functions_for_model
 		
 		if($hasloFromDatabase ==$hash) {
 			
-			$output = array("status" => "OK");
-			$output["pageName"] = "AdminPanel";
+			
+			
+			if($post['dodaj_pracownika']){
+				
+				$tytul=$post['tytul'];
+				$imie=$post['imie'];
+				$nazwisko=$post['nazwisko'];
+				
+				$sql="INSERT INTO pracownicy SET Tytul='$tytul', Imie='$imie', Nazwisko='$nazwisko'";
+				$conn->query($sql);
+				
+				
+			}
+			if($post['usun_pracownika']){
+				
+				$idpracownik=$post['idPracownicy'];
+				
+				$sql="DELETE FROM pracownicy WHERE idPracownicy='$idpracownik'";
+				$conn->query($sql);
+				
+			}
+			
+			
+			$output = array(
+			"pageName" => "AdminPanel",
+			"status" => "OK",
+			"HTML_PRACOWNICY" => $this->getPracownicy($conn)
+			);
+			
+			
 			
 		}else{
 			
@@ -58,4 +84,15 @@ class AdminPanel implements functions_for_model
         
         return $output;
     }
+	private function getPracownicy($conn){
+		$pracownicy = array();
+        $sql="SELECT * FROM pracownicy";
+		$stmt = $conn->query($sql);
+		while($row = $stmt->fetch()){
+			
+			array_push($pracownicy, $row);
+		}
+        return $pracownicy;
+    }
+	
 }
