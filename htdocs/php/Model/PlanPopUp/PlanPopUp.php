@@ -11,22 +11,22 @@ class PlanPopUp implements functions_for_model {
     }
     public function getViewParams($post) {
         $numerBudynku = $post['numerBudynku'];
-        $numerPietra = $post['numerPietra'];
+        $numerPietro = $post['numerPietro'];
         $numerPomieszczenia = $post['numerPokoju'];
         $output = array();
         $output['pageName'] = "PlanPopUp";
-        $output['HTML_ROOM'] = $this->getRoomInfo($numerBudynku, $numerPietra, $numerPomieszczenia);
+        $output['HTML_ROOM'] = $this->getRoomInfo($numerBudynku, $numerPietro, $numerPomieszczenia);
         return $output;
     }
-    private function getRoomInfo($numerBudynku, $numerPietra, $numerPomieszczenia) {
+    private function getRoomInfo($numerBudynku, $numerPietro, $numerPomieszczenia) {
         // Temporary function
         $output = array();
-
+        $output['NUMBER'] = $numerPomieszczenia;
         $DB_BUDYNEK = Buildings::findNumber($numerBudynku);
 
         $idbudynku = $DB_BUDYNEK->getBuildingID();
 
-        $DB_FLOORS = Floors::findBuildingIDFloorNumber($numerBudynku ,$numerPietra);
+        $DB_FLOORS = Floors::findBuildingIDFloorNumber($numerBudynku ,$numerPietro);
         $idpietra = $DB_FLOORS->getFloorID();
 
         if ($idpietra == null) {
@@ -57,25 +57,24 @@ class PlanPopUp implements functions_for_model {
             $output['TYPE'] = "Gabinet";
         }
 
-        $DB_EMPLOYEES = EmployeesInRooms::findByRooms($idpomieszczenia);
-        $len = count($DB_EMPLOYEES);
-        print_r($DB_EMPLOYEES);
+        $DB_LIST_OF_EMPLOYEES = EmployeesInRooms::findByRooms($idpomieszczenia);
+        $len = count($DB_LIST_OF_EMPLOYEES);
         for ($i = 0; $i < $len; $i++) {
-            $idpracownika = $DB_EMPLOYEES[$i]->getEmployeeID();
+            $idpracownika = $DB_LIST_OF_EMPLOYEES[$i]->getEmployeeID();
             $DB_EMPLOYEES = Employees::find($idpracownika);
             $output['TEACHER-NAME'][$i] = $DB_EMPLOYEES->getName();
             $output['TEACHER-SURNAME'][$i] = $DB_EMPLOYEES->getSurname();
             $output['TEACHER-ACADEMIC-TITLE'][$i] = $DB_EMPLOYEES->getAcademicTitle();
             $DB_EMPLOYEES_IN_ROOMS = EmployeesInRooms::findByEmployees($idpracownika);
-            $len = count($DB_EMPLOYEES_IN_ROOMS);
-            for ($k = 0; $k < $len; $k++) {
+            $len_fav_rom = count($DB_EMPLOYEES_IN_ROOMS);
+            for ($k = 0; $k < $len_fav_rom; $k++) {
                     $roomid=$DB_EMPLOYEES_IN_ROOMS[$k]->getRoomID();
                     $DB_ROOMS=Rooms::find($roomid);
                     $room = $DB_ROOMS->getRoomNumber();
                     $output['TEACHER-FAVORITE-ROOMS'][$i][$k] = $room;
             }   
         }
-        $numOfteachers= count($output['TEACHER-NAME']);
+        $numOfteachers = count($output['TEACHER-NAME']);
         for ($i = 0; $i < $numOfteachers; $i++) {
             $output['TEACHER-SCHEDULE'][$i] = $this->getSchedule($output['TEACHER-NAME'][$i], $output['TEACHER-SURNAME'][$i]);
         }
@@ -90,6 +89,9 @@ class PlanPopUp implements functions_for_model {
         $maxLastDate->setTimezone(new DateTimeZone('Europe/Warsaw'));
         $maxLastDate->add(new DateInterval('P20D'));
         $end = $maxLastDate->format(DateTime::ATOM);
+        // change special characters to url format
+        $name = urlencode($name);
+        $surname = urlencode($surname);
         $plan = Scrapper::getSchedule($name, $surname, $today, $end);
         $output = array();
         $output['TEACHER_CURRENT_LESSON'] = "Brak zajęć w tym momencie.";
@@ -105,7 +107,7 @@ class PlanPopUp implements functions_for_model {
                 $output['TEACHER_NEXT_LESSON'] = $plan[1]["title"]."\n".$plan[1]["room"]."\n".$humanDateFormat->format('d.m.Y H:i')."\n";
             }
         }
-        return $output;
     }
+    return $output;
 }
 }

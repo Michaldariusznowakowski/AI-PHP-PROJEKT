@@ -113,6 +113,20 @@ class Rooms{
         $post = Rooms::fromArray($postArray);
         return $post;
     }
+    public static function findFloorID($floorID) {
+        $pdo = new Database();
+        $pdo = $pdo->dbConnection();
+        $sql = 'SELECT * FROM pokoje WHERE Pietra_idPietra = :Pietra_idPietra';
+        $statement = $pdo->prepare($sql);
+        $statement->execute(['Pietra_idPietra' => $floorID]);
+        $posts = [];
+        $postsArray = $statement->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($postsArray as $postArray) {
+            $posts[] = self::fromArray($postArray);
+        }
+
+        return $posts;
+    }
 
     public function save(): void
     {

@@ -34,7 +34,7 @@ class interfaces{
     // Plan wyswietla plan budynku wymaga numer budynku i pietra
     private static $Plan=array('numerBudynku'=>1,'numerPietro'=>0,'numerPokoju'=>0);
     // Szukaj wyswietla wyniki wyszukiwania
-    private static $Search=array('typ'=>0, 'numerBudynku'=>0,'numerPokoju'=>0, 'imie'=>0,'nazwisko'=>0,'godzina'=>0, 'dzien'=>0);
+    private static $Search=array('numerBudynku'=>0,'numerPokoju'=>0, 'imie'=>0,'nazwisko'=>0);
     // AdminPanel wymaga loginu i hasla
     private static $AdminPanel=array('login'=>1,'haslo'=>1,'secret'=>0);
 	// AdminLogin 
@@ -42,7 +42,7 @@ class interfaces{
     // Strona główna
     private static $MainPage=array('page'=>0);
     // Plan PopUp
-    private static $PlanPopUp=array('numerBudynku'=>1,'numerPietra'=>1,'numerPokoju'=>1);
+    private static $PlanPopUp=array('numerBudynku'=>1,'numerPietro'=>1,'numerPokoju'=>1);
     // Funkcja zwraca tablice z nazwami zmiennych
     public static function getInterface($interfaceName){
         foreach (interfaces::$interfaceNames as $name => $interface) {

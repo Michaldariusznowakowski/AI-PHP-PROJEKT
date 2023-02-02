@@ -99,6 +99,19 @@ class Employees{
         $post = Employees::fromArray($postArray);
         return $post;
     }
+    public static function findNameSurname($name, $surname) {
+        $pdo = new Database();
+        $pdo = $pdo->dbConnection();
+        $sql = 'SELECT * FROM pracownicy WHERE Imie = :Imie AND Nazwisko = :Nazwisko';
+        $statement = $pdo->prepare($sql);
+        $statement->execute(['Imie' => $name, 'Nazwisko' => $surname]);
+        $postArray = $statement->fetch(PDO::FETCH_ASSOC);
+        if (! $postArray) {
+            return null;
+        }
+        $post = Employees::fromArray($postArray);
+        return $post;
+    }
 
     public function save(): void
     {
