@@ -75,7 +75,7 @@ class Floors{
         $sql = 'SELECT * FROM pietra';
         $statement = $pdo->prepare($sql);
         $statement->execute();
-        print_r($statement);
+        // print_r($statement);
         $posts = [];
         $postsArray = $statement->fetchAll(PDO::FETCH_ASSOC);
         foreach ($postsArray as $postArray) {

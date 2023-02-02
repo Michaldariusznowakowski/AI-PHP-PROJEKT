@@ -3,7 +3,21 @@ class FileManager{
     // SETTINGS
     private $TARGET_PATH = 'resources/img/';
     private $allowedExtensions = ["png","jpg","jpeg","svg"];
- 
+    public function getTargetPath()
+    {
+        return $this->TARGET_PATH;
+    }
+    public function setTargetPath($path)
+    {
+        $this->TARGET_PATH = $path;
+    }
+
+    public function getFileExtension($file)
+    {
+        $info = pathinfo($file['name']);
+        $extension = $info['extension'];
+        return $extension;
+    }
     // save file
     public function save($file, $name)
     {
