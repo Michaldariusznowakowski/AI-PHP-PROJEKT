@@ -35,7 +35,6 @@ class Plan implements functions_for_model
         return $output;
     }
     private function getPlanFilePath($buildingNumber, $floorNumber = 0){
-        return "upload/pietro1.svg"; // TODO: remove this line /////////////////////////////////////////////
         $DB_BULDINGS = Buildings::findNumber($buildingNumber);
         if ($DB_BULDINGS == null) return null;
         $buldingID = $DB_BULDINGS->getBuildingID();
@@ -44,7 +43,6 @@ class Plan implements functions_for_model
         $photoUrl = $DB_FLOORS->getPhotoUrl();
         if ($photoUrl == null) return null;
         if ($photoUrl == "empty") return null;
-        $photoUrl = "upload/".$photoUrl;
         if (file_exists($photoUrl)) return $photoUrl;
         return null;
     }

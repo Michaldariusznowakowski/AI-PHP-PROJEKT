@@ -50,10 +50,10 @@ CREATE TABLE IF NOT EXISTS `pietra` (
 -- Zrzucanie danych dla tabeli dondedb.pietra: ~10 rows (około)
 /*!40000 ALTER TABLE `pietra` DISABLE KEYS */;
 INSERT INTO `pietra` (`idPietra`, `NumerPietra`, `Budynki_idBudynki`, `PhotoUrl`) VALUES
-	(1, -1, 1, 'empty'),
-	(2, 0, 1, 'empty'),
-	(3, 1, 1, 'empty'),
-	(4, 2, 1, 'empty'),
+	(1, -1, 1, 'upload/1_-1.svg'),
+	(2, 0, 1, 'upload/1_0.svg'),
+	(3, 1, 1, 'upload/1_1.svg'),
+	(4, 2, 1, 'upload/1_2.svg'),
 	(5, 3, 1, 'empty'),
 	(6, -1, 2, 'empty'),
 	(7, 0, 2, 'empty'),
