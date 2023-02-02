@@ -57,3 +57,10 @@
 	</form>
 
 </div>
+<div class="col-6">
+	<h2>Formularz Dodania Pliku</h2>
+	<form action="index.php" method="post">
+		<label> Dodaj / Usuń plik </label>
+		<input type="submit" name="page" value="Formularz Plików">
+	</form>
+</div>

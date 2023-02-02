@@ -16,7 +16,8 @@ class interfaces{
         'Szukaj' => 'Search',
         'Admin Panel' => 'AdminPanel',
 	'Admin Login' => 'AdminLogin',
-        "Plan PopUp" => "PlanPopUp"
+        "Plan PopUp" => "PlanPopUp",
+		 "Formularz Plików" => "FileForm"
     );
 
     // Ta zmienna przechowuje interfejsy, które zostaną wyświetlone 
@@ -43,6 +44,9 @@ class interfaces{
     private static $MainPage=array('page'=>0);
     // Plan PopUp
     private static $PlanPopUp=array('numerBudynku'=>1,'numerPietra'=>1,'numerPokoju'=>1);
+	// File Manager
+    private static $FileForm=array('fileName'=>0,'fileSend'=>0);
+
     // Funkcja zwraca tablice z nazwami zmiennych
     public static function getInterface($interfaceName){
         foreach (interfaces::$interfaceNames as $name => $interface) {
