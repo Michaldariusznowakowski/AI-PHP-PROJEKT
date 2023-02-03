@@ -56,8 +56,8 @@ INSERT INTO `pietra` (`idPietra`, `NumerPietra`, `Budynki_idBudynki`, `PhotoUrl`
 	(4, 2, 1, 'upload/1_2.svg'),
 	(5, 3, 1, 'empty'),
 	(6, -1, 2, 'empty'),
-	(7, 0, 2, 'empty'),
-	(8, 1, 2, 'empty'),
+	(7, 0, 2, 'upload/2_0.svg'),
+	(8, 1, 2, 'upload/2_1.svg'),
 	(9, 2, 2, 'empty'),
 	(10, 3, 2, 'empty'),
 	(11, 0, 3, 'upload/3_0.svg');
@@ -153,7 +153,11 @@ INSERT INTO `pokoje` (`idPokoje`, `NumerPokoju`, `TypPokoju`, `Pietra_idPietra`)
 	(75, '13', 1, 1),
 	(76, '200', 1, 4),
 	(77, '215', 1, 4),
-	(78, '11', 1, 1);
+	(78, '11', 1, 1),
+	(79, '10', 1, 7),
+	(80, '11', 1, 7),
+	(81, '17', 1, 7),
+	(82, '25', 1, 7);
 /*!40000 ALTER TABLE `pokoje` ENABLE KEYS */;
 
 -- Zrzut struktury tabela dondedb.pracownicy
