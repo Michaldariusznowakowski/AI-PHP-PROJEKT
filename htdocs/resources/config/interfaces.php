@@ -43,7 +43,7 @@ class interfaces{
     // Strona główna
     private static $MainPage=array('page'=>0);
     // Plan PopUp
-    private static $PlanPopUp=array('numerBudynku'=>1,'numerPietra'=>1,'numerPokoju'=>1);
+    private static $PlanPopUp=array('numerBudynku'=>1,'numerPietro'=>1,'numerPokoju'=>1);
 	// File Manager
     private static $FileForm=array('fileName'=>0,'fileSend'=>0);
 
