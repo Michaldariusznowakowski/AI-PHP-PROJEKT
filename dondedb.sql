@@ -59,7 +59,8 @@ INSERT INTO `pietra` (`idPietra`, `NumerPietra`, `Budynki_idBudynki`, `PhotoUrl`
 	(7, 0, 2, 'empty'),
 	(8, 1, 2, 'empty'),
 	(9, 2, 2, 'empty'),
-	(10, 3, 2, 'empty');
+	(10, 3, 2, 'empty'),
+	(11, 0, 3, 'upload/3_0.svg');
 /*!40000 ALTER TABLE `pietra` ENABLE KEYS */;
 
 -- Zrzut struktury tabela dondedb.pokoje

@@ -36,10 +36,13 @@
     var rooms_obj_ = svg_obj_.querySelectorAll("[inkscape\\:label^='pok_']");
     var popup_obj_ = document.querySelector(".popup");
     var last_selected_room_obj_ = null;
-    var room_default_color_ = rooms_obj_[0].style.fill;
+    var room_default_color_ = null;
+    if (rooms_obj_.length > 0) {
+        room_default_color_ = rooms_obj_[0].style.fill;
+    }
     ///////////////////////////////// Functions /////////////////////////////////
     function eventSvgRotate(e) {
-        if (window.innerWidth < window.innerHeight) {
+        if (600 > window.innerWidth) { 
             svg_obj_.style.transform = "rotate(90deg) scale(3)";
             // fix margin
             svg_obj_.style.marginTop = "130%";
@@ -101,9 +104,15 @@
     }
     ///////////////////////////////// View /////////////////////////////////
 
-    window.addEventListener("resize", eventSvgRotate);
+    
     // preserveAspectRatio="xMidYMid meet"
-    svg_obj_.setAttribute("preserveAspectRatio", "xMidYMid meet");
+    if (svg_obj_!= null) {
+        window.addEventListener("resize", eventSvgRotate);
+        svg_obj_.setAttribute("preserveAspectRatio", "xMidYMid meet");
+        svg_obj_.style.height = "100%";
+        svg_obj_.style.width = "100%";
+    }
+    
 
     //run on start
     eventSvgRotate();
