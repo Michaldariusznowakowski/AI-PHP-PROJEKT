@@ -7,7 +7,7 @@ licenses
 locale
 MercuryMail
 perl
-php
+/php/
 phpMyAdmin
 sendmail
 tmp

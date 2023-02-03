@@ -50,16 +50,17 @@ class Controller{
         $interface = interfaces::getInterface($interfaceName);
         $posts = array();
         foreach($interface as $key => $value){
-                if(isset($_POST[$key])){
-                    $posts[$key] = $_POST[$key];
+            if(isset($_POST[$key])){
+                $posts[$key] = $_POST[$key];
+            }
+        }
+        if ($interfaceName == "Formularz Plików") {
+            if(isset($_POST['fileSend']) && $_POST['fileSend']=='1')
+            {
+                if (is_uploaded_file($_FILES['userFile']['tmp_name'])) {
+                    $posts['userFile'] = $_FILES['userFile'];
                 }
         }
-        // if ($interfaceName == "Polska nazwa modułu") {
-        //     if (is_uploaded_file($_FILES['userFile']['tmp_name'])) {
-        //         $posts['userFile'] = $_FILES['userFile'];
-
-        //     }
-        // }
         return $posts;
     }
 }
