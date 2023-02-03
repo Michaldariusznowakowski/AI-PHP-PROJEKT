@@ -16,7 +16,9 @@
 </select>
 <br />
 <input type='file' name='userFile'><br />
-<input type="submit" name="page" value="Formularz Plików">
+<input type="hidden" name="page" value="Formularz Plików">
+<input type="submit" name="submit" value="Dodaj">
+    
 </form>
 Status: <?php if (isset($saveStatus))
     echo $saveStatus;
@@ -37,7 +39,9 @@ Status: <?php if (isset($saveStatus))
 ?>
 </select>
 <input type='hidden' name='fileSend' value='2'>
-<input type="submit" name="page" value="Formularz Plików"><br />
+<input type="hidden" name="page" value="Formularz Plików"><br />
+<input type="submit" name="submit" value="Usuń"><br />
+    
 </form>
 Status: <?php if (isset($removeStatus))
     echo $removeStatus;
