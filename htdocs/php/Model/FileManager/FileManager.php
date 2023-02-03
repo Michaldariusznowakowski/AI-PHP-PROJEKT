@@ -1,7 +1,7 @@
 <?php
 class FileManager{
     // SETTINGS
-    private $TARGET_PATH = 'resources/img/';
+    private $TARGET_PATH = 'upload/';
     private $allowedExtensions = ["png","jpg","jpeg","svg"];
     public function getTargetPath()
     {
