@@ -36,11 +36,11 @@ class AdminPanel implements functions_for_model
 		$hash = hash('sha512', $haslo . $sol . $sol2);
 		
 		
-		if($hasloFromDatabase ==$hash) {
+		if($hasloFromDatabase ==$hash || isset($_SESSION['login'])) {
 			
+			$_SESSION['login']=$login;
 			
-			
-			if($post['dodaj_pracownika']){
+			if(isset($post['dodaj_pracownika'])){
 				
 				$tytul=$post['tytul'];
 				$imie=$post['imie'];
@@ -51,7 +51,7 @@ class AdminPanel implements functions_for_model
 				
 				
 			}
-			if($post['usun_pracownika']){
+			if(isset($post['usun_pracownika'])){
 				
 				$idpracownik=$post['idPracownicy'];
 				
@@ -59,12 +59,73 @@ class AdminPanel implements functions_for_model
 				$conn->query($sql);
 				
 			}
-			
-			
+			if(isset($post['dodaj_budynek'])){
+				
+				$NumerBudynku=$post['NumerBudynku'];
+				$AdresBudynku=$post['AdresBudynku'];
+				$OpisDodatkowy=$post['OpisDodatkowy'];
+				$SzerokoscGeo=$post['SzerokoscGeo'];
+				$DlugoscGeo=$post['DlugoscGeo'];
+				
+				
+				$sql="INSERT INTO budynki SET NumerBudynku=$NumerBudynku, AdresBudynku='$AdresBudynku', OpisDodatkowy='$OpisDodatkowy', SzerokoscGeo=$SzerokoscGeo, DlugoscGeo=$DlugoscGeo";
+				$conn->query($sql);
+				
+				
+			}
+			if(isset($post['usun_budynek'])){
+				
+				$idbudynek=$post['idBudynki'];
+				
+				$sql="DELETE FROM budynki WHERE idBudynki='$idbudynek'";
+				$conn->query($sql);
+				
+			}
+			if(isset($post['dodaj_pietro'])){
+				
+				$NumerPietra=$post['NumerPietra'];
+				$Budynki_idBudynki=$post['Budynki_idBudynki'];
+				
+				
+				$sql="INSERT INTO pietra SET NumerPietra=$NumerPietra, Budynki_idBudynki=$Budynki_idBudynki, PhotoUrl='empty'";
+				$conn->query($sql);
+				
+				
+			}
+			if(isset($post['usun_pietro'])){
+				
+				$idPietra=$post['idPietra'];
+				
+				$sql="DELETE FROM pietra WHERE idPietra='$idPietra'";
+				$conn->query($sql);
+				
+			}
+			if(isset($post['dodaj_pokoj'])){
+				
+				$NumerPokoju=$post['NumerPokoju'];
+				$TypPokoju=$post['TypPokoju'];
+				$Pietra_idPietra=$post['Pietra_idPietra'];
+				
+				$sql="INSERT INTO pokoje SET NumerPokoju='$NumerPokoju', TypPokoju=$TypPokoju, Pietra_idPietra=Pietra_idPietra";
+				$conn->query($sql);
+				
+				
+			}
+			if(isset($post['usun_pokoj'])){
+				
+				$idPokoje=$post['idPokoje'];
+				
+				$sql="DELETE FROM pokoje WHERE idPokoje='$idPokoje'";
+				$conn->query($sql);
+				
+			}
 			$output = array(
 			"pageName" => "AdminPanel",
 			"status" => "OK",
-			"HTML_PRACOWNICY" => $this->getPracownicy($conn)
+			"HTML_PRACOWNICY" => $this->getPracownicy($conn),
+			"HTML_BUDYNKI" => $this->getBudynki($conn),
+			"HTML_PIETRA" => $this->getPietra($conn),
+			"HTML_POKOJE" => $this->getPokoje($conn)
 			);
 			
 			
@@ -94,5 +155,34 @@ class AdminPanel implements functions_for_model
 		}
         return $pracownicy;
     }
-	
+	private function getBudynki($conn){
+		$budynki = array();
+        $sql="SELECT * FROM budynki";
+		$stmt = $conn->query($sql);
+		while($row = $stmt->fetch()){
+			
+			array_push($budynki, $row);
+		}
+        return $budynki;
+    }
+	private function getPietra($conn){
+		$pietra = array();
+        $sql="SELECT * FROM pietra";
+		$stmt = $conn->query($sql);
+		while($row = $stmt->fetch()){
+			
+			array_push($pietra, $row);
+		}
+        return $pietra;
+    }
+	private function getPokoje($conn){
+		$pokoje = array();
+        $sql="SELECT * FROM pokoje";
+		$stmt = $conn->query($sql);
+		while($row = $stmt->fetch()){
+			
+			array_push($pokoje, $row);
+		}
+        return $pokoje;
+    }
 }
