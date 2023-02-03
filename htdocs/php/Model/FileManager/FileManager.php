@@ -2,7 +2,7 @@
 class FileManager{
     // SETTINGS
     private $TARGET_PATH = 'upload/';
-    private $allowedExtensions = ["png","jpg","jpeg","svg"];
+    private $allowedExtensions = ["svg"];
     public function getTargetPath()
     {
         return $this->TARGET_PATH;
