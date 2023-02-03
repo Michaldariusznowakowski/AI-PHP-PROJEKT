@@ -1,34 +1,31 @@
-<!-- <h1> Example of extract()  </h1>
-<h2> This variables are from Model/Plan/Plan.php </h2>
-<h2> You selected building: <?php echo $HTML_BULDING_NUMBER; ?> </h2> -->
-<h1>Plan</h1>
-<p>Budynek: <?php echo $HTML_BULDING_NUMBER; ?></p>
-<p>Aktualne piętro: <span> <?php echo $HTML_FLOOR_NUMBER; ?></span></p>
-<div>
-<!-- buttons -->
-<div class="col-12">
-<label>Wybierz piętro:</label>
-<form action="index.php" method="post">
-    <input type="hidden" name="numerBudynku" value="<?php echo $HTML_BULDING_NUMBER; ?>">
-    <input type="hidden" name="page" value="Plan">
-<?php foreach($HTML_FLOOR_LIST as $floor): ?>
-    <input type="submit" name="numerPietro" value="<?php echo $floor; ?>">
-<?php endforeach; ?>
+<h1>Plan </h1>
+<h4>Budynek: <?php echo $HTML_BULDING_NUMBER; ?> Aktualne piętro: <?php echo $HTML_FLOOR_NUMBER; ?></h4>
+<div class="col-12 popup">
+        <div class="placeholder">
+            <p>Wybierz pokój, <br /> aby otrzymać informacje <br />  dotyczące <br /> przeznaczenia <br />  pomieszczenia.</p>
+        </div>
 </div>
-</form>
-    <!-- svg from file -->
-    <div class="col-10">
+
+<!-- svg from file -->
+<div class="col-12 map">
     <?php if ($HTML_SVG_PLAN == null) {
         echo "<h1>Brak planu dla tego piętra.</h1>";
     } else {
         echo $HTML_SVG_PLAN;
     } ?>
-    </div>
-    <!-- pop up -->
-    <div class="col-2 popup">
-        <div class="placeholder">
-        <p>Wybierz pokój, <br /> aby otrzymać informacje <br />  dotyczące <br /> przeznaczenia <br />  pomieszczenia.</p>
-        </div>
+</div>
+
+<div class="col-12 buttons">
+    <label>Wybierz piętro:</label>
+    <form action="index.php" method="post">
+        <input type="hidden" name="numerBudynku" value="<?php echo $HTML_BULDING_NUMBER; ?>">
+        <input type="hidden" name="page" value="Plan">
+        <?php foreach($HTML_FLOOR_LIST as $floor): ?>
+        <input type="submit" name="numerPietro" value="<?php echo $floor; ?>">
+        <?php endforeach; ?>
+    </form>
+</div>
+
 <script type="text/javascript">
     "use strict";
     
@@ -41,6 +38,20 @@
     var last_selected_room_obj_ = null;
     var room_default_color_ = rooms_obj_[0].style.fill;
     ///////////////////////////////// Functions /////////////////////////////////
+    function eventSvgRotate(e) {
+        if (window.innerWidth < window.innerHeight) {
+            svg_obj_.style.transform = "rotate(90deg) scale(3)";
+            // fix margin
+            svg_obj_.style.marginTop = "130%";
+            svg_obj_.style.marginBottom = "130%";
+
+        } else {
+            svg_obj_.style.transform = "rotate(0deg)";
+            // fix margin
+            svg_obj_.style.marginTop = "0";
+            svg_obj_.style.marginBottom = "0";
+        }
+    }
     function event(e) {
         // get room number
         var roomNumber = e.target.getAttribute("inkscape:label").split("_")[1];
@@ -90,26 +101,12 @@
     }
     ///////////////////////////////// View /////////////////////////////////
 
-    // responsive svg size to window size infinately
-    svg_obj_.setAttribute("height", "100%");
-    svg_obj_.setAttribute("width", "100%");
-    
-    // rotate svg by 90 degrees using style if window width is smaller than height
-    window.addEventListener("resize", function () {
-        if (window.innerWidth < window.innerHeight) {
-            svg_obj_.style.transform = "rotate(90deg)";
-            // fix margin
-            svg_obj_.style.marginTop = "50%";
-            svg_obj_.style.marginBottom = "50%";
+    window.addEventListener("resize", eventSvgRotate);
+    // preserveAspectRatio="xMidYMid meet"
+    svg_obj_.setAttribute("preserveAspectRatio", "xMidYMid meet");
 
-
-        } else {
-            svg_obj_.style.transform = "rotate(0deg)";
-            // fix margin
-            svg_obj_.style.marginTop = "0";
-            svg_obj_.style.marginBottom = "0";
-        }
-    });
+    //run on start
+    eventSvgRotate();
 
     ///////////////////////////////// Main /////////////////////////////////
     

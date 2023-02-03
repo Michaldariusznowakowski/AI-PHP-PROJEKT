@@ -29,10 +29,8 @@
     /* Add gray transparent background to this div */
     text-align: center;
     font-size: 180%;
-}
-.Plan .popup {
-    padding: 1%;
-
+    padding: 0;
+    margin: 0;
 }
 .Plan .popup h2{
     font-size: 100%;
@@ -52,4 +50,23 @@
     margin: 0;
     text-decoration: none;
     color: rgb(127, 111, 172);
+}
+
+.Plan .buttons {
+    padding: 3%;
+    background-color: #00000027;
+}
+.Plan .buttons label{
+    margin-bottom : 3%;
+}
+.Plan .buttons input{
+    margin: 0 1%;
+    padding: 1%;
+    border: none;
+    background-color: rgb(18, 16, 24);
+    color: white;
+    font-size: 90%;
+}
+.Plan .buttons input:hover{
+    background-color: rgb(127, 111, 172);
 }
