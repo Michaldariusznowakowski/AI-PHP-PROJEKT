@@ -55,6 +55,7 @@ class FileForm implements functions_for_model
                         if($floorList[$i]->getPhotoUrl() == $b->getTargetPath().$post['fileName']) 
                         {
                             $floorList[$i]->setPhotoUrl("empty")->save();
+                            $output["files"] = $b->GetList()['list'];
                         }
                     } 
                 }
