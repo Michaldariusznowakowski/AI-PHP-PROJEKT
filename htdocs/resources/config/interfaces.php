@@ -37,7 +37,34 @@ class interfaces{
     // Szukaj wyswietla wyniki wyszukiwania
     private static $Search=array('numerBudynku'=>0,'numerPokoju'=>0, 'imie'=>0,'nazwisko'=>0);
     // AdminPanel wymaga loginu i hasla
-    private static $AdminPanel=array('login'=>1,'haslo'=>1,'secret'=>0);
+     private static $AdminPanel=array('login'=>0,
+									'haslo'=>0,
+									'secret'=>0,
+									'dodaj_pracownika'=>0,
+									'tytul'=>0,
+									'imie'=>0,
+									'nazwisko'=>0,
+									'usun_pracownika'=>0,
+									'idPracownik'=>0,
+									'dodaj_budynek'=>0,
+									'NumerBudynku'=>0,
+									'AdresBudynku'=>0,
+									'OpisDodatkowy'=>0,
+									'SzerokoscGeo'=>0,
+									'DlugoscGeo'=>0,
+									'usun_budynek'=>0,
+									'idBudynki'=>0,
+									'dodaj_pietro'=>0,
+									'NumerPietra'=>0,
+									'Budynki_idBudynki'=>0,
+									'usun_pietro'=>0,
+									'idPietra'=>0,
+									'dodaj_pokoj'=>0,
+									'NumerPokoju'=>0,
+									'TypPokoju'=>0,
+									'Pietra_idPietra'=>0,
+									'usun_pokoj'=>0,
+									'idPokoje'=>0);
 	// AdminLogin 
     private static $AdminLogin=array('login'=>0,'haslo'=>0,'secret'=>0);
     // Strona główna
