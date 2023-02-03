@@ -12,7 +12,12 @@ class Plan implements functions_for_model
         } else {
             $floorNumber = 0;
         }
-        $buildingNumber = $post['numerBudynku'];
+        if (isset($post['numerBudynku'])) {
+            $buildingNumber = $post['numerBudynku'];
+        } else {
+            $buildingNumber = "unknown";
+        }
+        
         
         $floorsList = $this->getAvailableFloors($buildingNumber);
 
@@ -56,6 +61,7 @@ class Plan implements functions_for_model
     }
     private function getAvailableFloors($buildingNumber){
         $DB_BULDINGS = Buildings::findNumber($buildingNumber);
+        if ($DB_BULDINGS == null) return null;
         $buldingID = $DB_BULDINGS->getBuildingID();
         $DB_FLOORS = Floors::findBuildingID($buldingID);
         $floorsList = array();

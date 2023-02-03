@@ -55,12 +55,12 @@ class Controller{
             }
         }
         if ($interfaceName == "Formularz Plików") {
-            if(isset($_POST['fileSend']) && $_POST['fileSend']=='1')
-            {
+            if(isset($_POST['fileSend']) && $_POST['fileSend']=='1') {
                 if (is_uploaded_file($_FILES['userFile']['tmp_name'])) {
                     $posts['userFile'] = $_FILES['userFile'];
                 }
         }
+        }
         return $posts;
-    }
+    } 
 }
