@@ -33,6 +33,7 @@
 			<td>
 				<form action="" method="post">
 					<input type="hidden" name="idPracownik" value="<?=$pracownik['idPracownicy']?>">
+					<input type="hidden" name="page" value="Admin Panel">
 					<input type="submit" name="usun_pracownika" value="usun">
 				</form>
 			</td>
@@ -94,8 +95,9 @@
 				<?=$budynek['DlugoscGeo']?>
 			</td>
 			<td>
-				<form action="" method="post">
+				<form action="index.php" method="post">
 					<input type="hidden" name="idBudynki" value="<?=$budynek['idBudynki']?>">
+					<input type="hidden" name="page" value="Admin Panel">
 					<input type="submit" name="usun_budynek" value="usun">
 				</form>
 			</td>
@@ -140,8 +142,9 @@
 				<?=$pietro['PhotoUrl']?>
 			</td>
 			<td>
-				<form action="" method="post">
+				<form action="index.php" method="post">
 					<input type="hidden" name="idPietra" value="<?=$pietro['idPietra']?>">
+					<input type="hidden" name="page" value="Admin Panel">
 					<input type="submit" name="usun_pietro" value="usun">
 				</form>
 			</td>
@@ -185,8 +188,9 @@
 				<?=$pomieszczenie['Pietra_idPietra']?>
 			</td>
 			<td>
-				<form action="" method="post">
+				<form action="index.php" method="post">
 					<input type="hidden" name="idPokoje" value="<?=$pomieszczenie['idPokoje']?>">
+					<input type="hidden" name="page" value="Admin Panel">
 					<input type="submit" name="usun_pokoj" value="usun">
 				</form>
 			</td>
@@ -209,6 +213,7 @@
 		Tytul: <input type="text" name="tytul"><br />
 		Imie: <input type="text" name="imie"><br />
 		Nazwisko: <input type="text" name="nazwisko"><br />
+		<input type="hidden" name="page" value="Admin Panel">
 		<input type="submit" name="dodaj_pracownika" value="dodaj">
 	</form>
 
@@ -222,6 +227,7 @@
 		Opis: <input type="text" name="OpisDodatkowy"><br />
 		Lat: <input type="number" step=any name="SzerokoscGeo"><br />
 		Lng: <input type="number" step=any name="DlugoscGeo"><br />
+		<input type="hidden" name="page" value="Admin Panel">
 		<input type="submit" name="dodaj_budynek" value="dodaj">
 	</form>
 
@@ -245,7 +251,7 @@
 		?>
 		</select><br />
 		
-		
+		<input type="hidden" name="page" value="Admin Panel">
 		<input type="submit" name="dodaj_pietro" value="dodaj">
 	</form>
 
@@ -275,7 +281,7 @@
 		?>
 		</select><br />
 		
-		
+		<input type="hidden" name="page" value="Admin Panel">
 		<input type="submit" name="dodaj_pokoj" value="dodaj">
 	</form>
 
