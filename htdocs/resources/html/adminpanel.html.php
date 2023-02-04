@@ -31,7 +31,7 @@
 				<?=$pracownik['Nazwisko']?>
 			</td>
 			<td>
-				<form action="" method="post">
+				<form action="index.php" method="post">
 					<input type="hidden" name="idPracownik" value="<?=$pracownik['idPracownicy']?>">
 					<input type="hidden" name="page" value="Admin Panel">
 					<input type="submit" name="usun_pracownika" value="usun">
