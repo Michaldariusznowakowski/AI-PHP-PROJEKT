@@ -10,3 +10,7 @@ The entire project is based on a database, it does not have any permanently ente
 We used the properties of SVG files to create the map, to add a new room, create a transparent element on the SVG file and give it an ID corresponding to the room number
 
 The project does not include current building floor maps due to time constraints. Contains sample 3 floors.
+
+
+Mockup can be found here:
+[michaldariusznowakowski.github.io/Donde-Mockup/#background_page](https://michaldariusznowakowski.github.io/Donde-Mockup/#background_page)
